@@ -7,8 +7,8 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background: #7a7b7c;
-  color: white;
+  background: #eef2f7;
+  color: rgb(72, 71, 71);
 }
 
 .hidden {
@@ -364,22 +364,6 @@ body {
   opacity: 0.95;
 }
 
-.check-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 6px;
-  font-size: 14px;
-  text-align: center;
-}
-
-.check-line input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: #ffffff;
-}
-
 .auth-logo-bottom {
   width: 100%;
   display: flex;
@@ -395,26 +379,13 @@ body {
   opacity: 0.95;
 }
 
-/* CARDS / GRID */
+/* CARDS */
 .card {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 14px;
   backdrop-filter: blur(6px);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.kv {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
 .k {
@@ -433,12 +404,6 @@ body {
   opacity: 0.95;
 }
 
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
 .badge {
   padding: 6px 10px;
   border-radius: 999px;
@@ -454,18 +419,7 @@ body {
   margin-top: 10px;
 }
 
-.estrellas {
-  color: #FFD700;
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: 700;
-}
-
-.webcam-box {
-  margin-top: 10px;
-}
-
-/* PANEL SPOT INTEGRADO */
+/* PANEL SPOT */
 .spot-panel {
   flex: 1;
   min-height: 0;
@@ -508,7 +462,6 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 14px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -546,7 +499,6 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 12px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -575,7 +527,6 @@ body {
 }
 
 .mapa-box {
-  border: 0 solid rgba(255, 255, 255, 0.10);
   background: rgba(236, 234, 234, 0.18);
   border-radius: 12px;
   padding: 10px;
@@ -667,10 +618,6 @@ body {
     align-items: stretch;
     padding: 10px;
     gap: 8px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
   }
 
   .modal-footer {

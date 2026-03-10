@@ -9,15 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonVolverInicio = document.getElementById("botonVolverInicio");
   const videoLanding = document.querySelector(".landing-video");
 
-  // Panel recomendación
   const recoBox = document.getElementById("recoBox");
+  const cardFotoDia = document.getElementById("cardFotoDia");
 
   if (videoLanding) videoLanding.playbackRate = 0.6;
 
-  // MODAL SPOT
-  const modalSpot = document.getElementById("modalSpot");
-  const botonCerrarModal = document.getElementById("botonCerrarModal");
-  const botonCerrarModal2 = document.getElementById("botonCerrarModal2");
+  // PANEL SPOT
+  const spotPanel = document.getElementById("spotPanel");
+  const botonCerrarSpot = document.getElementById("botonCerrarSpot");
   const botonCentrarMapa = document.getElementById("botonCentrarMapa");
 
   const tituloSpot = document.getElementById("tituloSpot");
@@ -48,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
   const btnCerrarRegistro = document.getElementById("btnCerrarRegistro");
   const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
-  const btnCheckRegistro = document.getElementById("btnCheckRegistro");
 
   const inputNombre = document.getElementById("regNombre");
   const inputEmail = document.getElementById("regEmail");
@@ -77,12 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function mostrarInicio() {
     aplicacion.classList.add("hidden");
     inicio.classList.remove("hidden");
-    cerrarModal();
+    cerrarSpotPanel();
     cerrarRegistro();
     ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
   }
 
-  // Botonera landing
   if (inicio) {
     inicio.querySelectorAll("[data-zona]").forEach((btn) => {
       btn.addEventListener("click", async () => {
@@ -140,6 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return salida;
   }
 
+  function num(v) {
+    if (v === null || v === undefined || v === "") return NaN;
+    return Number(String(v).trim().replace(",", "."));
+  }
+
   // BD -> API PHP
   async function cargarSpotsDesdeBD() {
     ponerEstado("Cargando spots desde BD...");
@@ -154,15 +156,16 @@ document.addEventListener("DOMContentLoaded", () => {
         name: r.nombre,
         province: r.provincia,
         ccaa: "Comunitat Valenciana",
-        lat: Number(r.lat),
-        lon: Number(r.lon ?? r.lng),
+        lat: num(r.lat),
+        lon: num(r.lon ?? r.lng),
         type: r.tipo_fondo || "—",
         buoy: "—",
         swell: [],
         wind_good: [],
         webcam: (r.webcam_url || "").trim() !== "",
         webcam_url: r.webcam_url || ""
-      }));
+      }))
+      .filter((r) => Number.isFinite(r.lat) && Number.isFinite(r.lon));
   }
 
   // WINDY MAPS
@@ -183,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function cargarMapas(spot) {
-    if (!spot || typeof spot.lat !== "number" || typeof spot.lon !== "number") return;
+    if (!spot || !Number.isFinite(spot.lat) || !Number.isFinite(spot.lon)) return;
     if (!iframeOlas || !iframeViento) return;
 
     const zoom = 8;
@@ -380,10 +383,10 @@ document.addEventListener("DOMContentLoaded", () => {
     pintarTop3(ranking, zonaLabel);
   }
 
-  // MODAL SPOT
+  // PANEL SPOT
   let spotActual = null;
 
-  function abrirModal(spot) {
+  function abrirSpotPanel(spot) {
     spotActual = spot;
 
     if (tituloSpot) tituloSpot.textContent = spot.name || "Spot";
@@ -404,14 +407,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (spotWebcam) spotWebcam.textContent = spot.webcam ? "Disponible" : "No disponible";
     if (spotCoordenadas) spotCoordenadas.textContent = `${spot.lat}, ${spot.lon}`;
 
-    cargarMapas(spot);
-
     if (ahoraOla) ahoraOla.textContent = "Cargando...";
     if (ahoraPeriodo) ahoraPeriodo.textContent = "Cargando...";
     if (ahoraDirOla) ahoraDirOla.textContent = "Cargando...";
     if (ahoraViento) ahoraViento.textContent = "Cargando...";
     if (ahoraDirViento) ahoraDirViento.textContent = "Cargando...";
     if (ahoraEstadoViento) ahoraEstadoViento.textContent = "Cargando...";
+
+    cargarMapas(spot);
+
+    spotPanel?.classList.remove("hidden");
+    cardFotoDia?.classList.add("hidden");
 
     obtenerPrediccionAhora(spot.lat, spot.lon)
       .then((p) => {
@@ -439,24 +445,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (ahoraEstadoViento) ahoraEstadoViento.textContent = "—";
         ponerEstado("No se pudo cargar la predicción (mira consola F12).");
       });
-
-    modalSpot?.classList.remove("hidden");
   }
 
-  function cerrarModal() {
-    modalSpot?.classList.add("hidden");
+  function cerrarSpotPanel() {
+    spotPanel?.classList.add("hidden");
+    cardFotoDia?.classList.remove("hidden");
     spotActual = null;
 
     if (iframeOlas) iframeOlas.src = "about:blank";
     if (iframeViento) iframeViento.src = "about:blank";
   }
 
-  botonCerrarModal?.addEventListener("click", cerrarModal);
-  botonCerrarModal2?.addEventListener("click", cerrarModal);
-
-  modalSpot?.addEventListener("click", (e) => {
-    if (e.target === modalSpot) cerrarModal();
-  });
+  botonCerrarSpot?.addEventListener("click", cerrarSpotPanel);
 
   botonCentrarMapa?.addEventListener("click", () => {
     if (!spotActual) return;
@@ -592,22 +592,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // CERRAR CON ESC
+  // ESC
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
 
-    if (modalSpot && !modalSpot.classList.contains("hidden")) {
-      cerrarModal();
-    }
-
     if (modalRegistro && !modalRegistro.classList.contains("hidden")) {
       cerrarRegistro();
+      return;
+    }
+
+    if (spotPanel && !spotPanel.classList.contains("hidden")) {
+      cerrarSpotPanel();
     }
   });
 
   // MARCADORES
   function añadirMarcadorSpot(spot) {
-    if (typeof spot.lat !== "number" || typeof spot.lon !== "number") return;
+    if (!Number.isFinite(spot.lat) || !Number.isFinite(spot.lon)) return;
 
     const marcador = L.circleMarker([spot.lat, spot.lon], {
       radius: 7,
@@ -619,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     marcador.on("click", () => {
       ponerEstado(`${spot.name} · ${spot.province}`);
-      abrirModal(spot);
+      abrirSpotPanel(spot);
     });
   }
 
@@ -627,6 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function cargarYMostrarSpots() {
     try {
       capaSpots.clearLayers();
+      cerrarSpotPanel();
 
       const zona = selectorZona?.value || "med";
 
@@ -638,20 +640,25 @@ document.addEventListener("DOMContentLoaded", () => {
         spots = aplanarSpots(datos);
       }
 
-      if (!spots.length) {
+      const spotsValidos = spots.filter(
+        (s) => Number.isFinite(s.lat) && Number.isFinite(s.lon)
+      );
+
+      if (!spotsValidos.length) {
         ponerEstado("No hay spots para mostrar.");
         if (recoBox) recoBox.innerHTML = `<div class="muted">No hay spots.</div>`;
         return;
       }
 
-      for (const s of spots) {
+      for (const s of spotsValidos) {
         añadirMarcadorSpot(s);
       }
 
-      mapa.fitBounds(spots.map((s) => [s.lat, s.lon]), { padding: [40, 40] });
-      ponerEstado(`OK: ${spots.length} spots cargados (${zona === "med" ? "BD" : "JSON"}).`);
+      mapa.invalidateSize();
+      mapa.fitBounds(spotsValidos.map((s) => [s.lat, s.lon]), { padding: [40, 40] });
+      ponerEstado(`OK: ${spotsValidos.length} spots cargados (${zona === "med" ? "BD" : "JSON"}).`);
 
-      await actualizarRecomendacion(spots, zona);
+      await actualizarRecomendacion(spotsValidos, zona);
     } catch (e) {
       console.error(e);
       ponerEstado(`ERROR: ${e.message} (mira consola F12)`);

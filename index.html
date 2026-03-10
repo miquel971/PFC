@@ -14,9 +14,8 @@
 
   <!-- LANDING -->
   <section id="inicio" class="landing">
-
     <video class="landing-video" autoplay muted loop playsinline>
-      <source src="video/home_02.mp4" type="video/mp4">
+      <source src="video/home_02_web.mp4" type="video/mp4">
     </video>
 
     <div class="landing-overlay"></div>
@@ -34,14 +33,11 @@
         <button class="btn btn-cta" data-zona="gal">Galicia</button>
       </div>
     </div>
-
   </section>
 
   <!-- APLICACIÓN -->
   <div id="aplicacion" class="app hidden">
-
     <header class="topbar">
-
       <div class="brand">
         <strong>SuperSpot</strong>
       </div>
@@ -62,32 +58,24 @@
       <nav>
         <button id="btnAbrirRegistro" class="nav-btn" type="button">Registro</button>
       </nav>
-
     </header>
 
     <main class="main">
-
       <div class="layout">
-
         <div id="mapa" class="mapa-pequeno"></div>
 
         <aside class="panel">
-
           <div class="card">
             <div id="recoBox"></div>
           </div>
 
-          <div class="card">
-            <div class="section-title">
-              Foto del día
-            </div>
-
+          <div class="card" id="cardFotoDia">
+            <div class="section-title">Foto del día</div>
             <img src="img/foto-dia.jpg" alt="Foto del día" style="width:100%; border-radius:12px; display:block;">
           </div>
 
-          <!-- FICHA SPOT INTEGRADA -->
-          <section id="modalSpot" class="spot-panel hidden">
-
+          <!-- PANEL DEL SPOT INTEGRADO -->
+          <section id="spotPanel" class="spot-panel hidden">
             <div class="spot-panel-head">
               <div>
                 <div id="tituloSpot" class="modal-title"></div>
@@ -96,12 +84,11 @@
 
               <div class="ficha-acciones">
                 <button id="botonCentrarMapa" class="btn btn-secondary">Centrar</button>
-                <button id="botonCerrarModal2" class="btn">Cerrar</button>
+                <button id="botonCerrarSpot" class="btn">Cerrar</button>
               </div>
             </div>
 
             <div class="spot-panel-body">
-
               <section class="ficha-arriba">
                 <div class="ficha-resumen" id="badgesSpot"></div>
 
@@ -166,114 +153,104 @@
                   </div>
                 </div>
               </section>
-
             </div>
           </section>
-
         </aside>
-
       </div>
 
       <div class="status" id="estado">
         Selecciona zona y pulsa “Cargar spots”.
       </div>
-
     </main>
+  </div>
 
-    <!-- MODAL REGISTRO -->
-    <div id="modalRegistro" class="modal hidden" aria-hidden="true">
+  <!-- MODAL REGISTRO -->
+  <div id="modalRegistro" class="modal hidden" aria-hidden="true">
+    <div class="modal-box modal-box-auth">
+      <button id="btnCerrarRegistro" class="modal-close" type="button">✕</button>
 
-      <div class="modal-box modal-box-auth">
-
-        <button id="btnCerrarRegistro" class="modal-close" type="button">✕</button>
-
-        <div class="modal-head">
-          <div class="modal-title">Crear cuenta</div>
-          <div class="modal-subtitle">Nombre, email y contraseña</div>
-        </div>
-
-        <form id="formRegistro" class="modal-body auth-form" novalidate>
-          <label class="visually-hidden" for="regNombre">Nombre</label>
-          <input
-            id="regNombre"
-            class="auth-input"
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            required
-            minlength="2"
-            maxlength="40"
-            autocomplete="name"
-          >
-
-          <label class="visually-hidden" for="regEmail">Email</label>
-          <input
-            id="regEmail"
-            class="auth-input"
-            type="email"
-            name="email"
-            placeholder="email: ejemplo@gmail.com"
-            required
-            maxlength="120"
-            autocomplete="email"
-          >
-
-          <label class="visually-hidden" for="regZona">Zona favorita</label>
-          <select id="regZona" class="auth-input" name="zona_favorita" required>
-            <option value="" disabled selected>Selecciona tu zona favorita</option>
-            <option value="med">Mediterráneo</option>
-            <option value="bal">Baleares</option>
-            <option value="cant">Cantábrico</option>
-            <option value="pv">País Vasco</option>
-            <option value="gal">Galicia</option>
-          </select>
-
-          <label class="visually-hidden" for="regPass">Contraseña</label>
-          <input
-            id="regPass"
-            class="auth-input"
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            required
-            minlength="8"
-            maxlength="72"
-            autocomplete="new-password"
-          >
-
-          <label class="visually-hidden" for="regPass2">Confirmar contraseña</label>
-          <input
-            id="regPass2"
-            class="auth-input"
-            type="password"
-            name="confirm_password"
-            placeholder="Confirmar contraseña"
-            required
-            minlength="8"
-            maxlength="72"
-            autocomplete="new-password"
-          >
-
-          <div id="msgRegistro" class="auth-msg" role="status" aria-live="polite"></div>
-
-          <div class="modal-footer">
-            <button id="btnCancelarRegistro" class="btn btn-secondary" type="button">Cancelar</button>
-            <button id="btnCheckRegistro" class="btn" type="submit">Registrarme</button>
-          </div>
-        </form>
-
-        <div class="auth-logo-bottom">
-          <img src="img/logo.png" alt="SuperSpot">
-        </div>
-
+      <div class="modal-head">
+        <div class="modal-title">Crear cuenta</div>
+        <div class="modal-subtitle">Nombre, email y contraseña</div>
       </div>
 
-    </div>
+      <form id="formRegistro" class="modal-body auth-form" novalidate>
+        <label class="visually-hidden" for="regNombre">Nombre</label>
+        <input
+          id="regNombre"
+          class="auth-input"
+          type="text"
+          name="nombre"
+          placeholder="Nombre"
+          required
+          minlength="2"
+          maxlength="40"
+          autocomplete="name"
+        >
 
+        <label class="visually-hidden" for="regEmail">Email</label>
+        <input
+          id="regEmail"
+          class="auth-input"
+          type="email"
+          name="email"
+          placeholder="email: ejemplo@gmail.com"
+          required
+          maxlength="120"
+          autocomplete="email"
+        >
+
+        <label class="visually-hidden" for="regZona">Zona favorita</label>
+        <select id="regZona" class="auth-input" name="zona_favorita" required>
+          <option value="" disabled selected>Selecciona tu zona favorita</option>
+          <option value="med">Mediterráneo</option>
+          <option value="bal">Baleares</option>
+          <option value="cant">Cantábrico</option>
+          <option value="pv">País Vasco</option>
+          <option value="gal">Galicia</option>
+        </select>
+
+        <label class="visually-hidden" for="regPass">Contraseña</label>
+        <input
+          id="regPass"
+          class="auth-input"
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+          minlength="8"
+          maxlength="72"
+          autocomplete="new-password"
+        >
+
+        <label class="visually-hidden" for="regPass2">Confirmar contraseña</label>
+        <input
+          id="regPass2"
+          class="auth-input"
+          type="password"
+          name="confirm_password"
+          placeholder="Confirmar contraseña"
+          required
+          minlength="8"
+          maxlength="72"
+          autocomplete="new-password"
+        >
+
+        <div id="msgRegistro" class="auth-msg" role="status" aria-live="polite"></div>
+
+        <div class="modal-footer">
+          <button id="btnCancelarRegistro" class="btn btn-secondary" type="button">Cancelar</button>
+          <button id="btnCheckRegistro" class="btn" type="submit">Registrarme</button>
+        </div>
+      </form>
+
+      <div class="auth-logo-bottom">
+        <img src="img/logo.png" alt="SuperSpot">
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
