@@ -1,0 +1,115 @@
+[
+  {
+    "ccaa": "Comunidad Valenciana",
+    "province": "Castellón",
+    "spots": [
+      {
+        "name": "Benicàssim",
+        "type": "arena",
+        "swell": ["NE","E"],
+        "wind_good": ["W","NW"],
+        "buoy": 2630,
+        "lat": 40.05,
+        "lon": 0.06,
+        "webcam": true
+      },
+      {
+        "name": "Burriana",
+        "type": "arena",
+        "swell": ["E","NE"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 40.0497,
+        "lon": 0.0669,
+        "webcam": false
+      },
+      {
+        "name": "Grao de Castellón",
+        "type": "arena",
+        "swell": ["E"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 39.97,
+        "lon": 0.01,
+        "webcam": false
+      },
+      {
+        "name": "Oropesa",
+        "type": "arena",
+        "swell": ["NE"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 40.09,
+        "lon": 0.14,
+        "webcam": false
+      },
+      {
+        "name": "Almenara",
+        "type": "arena",
+        "swell": ["NE","E"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 39.75,
+        "lon": -0.19,
+        "webcam": false
+      }
+    ]
+  },
+
+  {
+    "ccaa": "Comunidad Valenciana",
+    "province": "Valencia",
+    "spots": [
+      {
+        "name": "Patacona",
+        "type": "arena",
+        "swell": ["NE"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 39.49,
+        "lon": -0.32,
+        "webcam": false
+      },
+      {
+        "name": "Port Saplaya",
+        "type": "puerto",
+        "swell": ["NE"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 39.51,
+        "lon": -0.29,
+        "webcam": false
+      },
+      {
+        "name": "El Saler",
+        "type": "arena",
+        "swell": ["E","NE"],
+        "wind_good": ["W","NW"],
+        "buoy": 2630,
+        "lat": 39.36,
+        "lon": -0.33,
+        "webcam": false
+      },
+      {
+        "name": "Cullera (Dosel)",
+        "type": "arena",
+        "swell": ["E","NE"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 39.17,
+        "lon": -0.23,
+        "webcam": false
+      },
+      {
+        "name": "Gandía",
+        "type": "arena",
+        "swell": ["E"],
+        "wind_good": ["W"],
+        "buoy": 2630,
+        "lat": 38.99,
+        "lon": -0.16,
+        "webcam": false
+      }
+    ]
+  }
+]

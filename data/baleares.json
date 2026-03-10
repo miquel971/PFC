@@ -1,0 +1,110 @@
+[
+  {
+    "ccaa": "Islas Baleares",
+    "province": "Mallorca",
+    "spots": [
+      {
+        "name": "Son Serra de Marina",
+        "type": "arena",
+        "swell": ["N","NE","E"],
+        "wind_good": ["S","SW"],
+        "buoy": 6110,
+        "lat": 39.73,
+        "lon": 3.24,
+        "webcam": false
+      },
+      {
+        "name": "Can Pastilla",
+        "type": "arena",
+        "swell": ["E","SE"],
+        "wind_good": ["NW"],
+        "buoy": 6110,
+        "lat": 39.54,
+        "lon": 2.71,
+        "webcam": false
+      },
+      {
+        "name": "Cala Mesquida",
+        "type": "arena",
+        "swell": ["N","NE"],
+        "wind_good": ["SW"],
+        "buoy": 6110,
+        "lat": 39.75,
+        "lon": 3.43,
+        "webcam": false
+      },
+      {
+        "name": "Port de Pollença",
+        "type": "bahia",
+        "swell": ["N","NE"],
+        "wind_good": ["S"],
+        "buoy": 6110,
+        "lat": 39.91,
+        "lon": 3.08,
+        "webcam": false
+      }
+    ]
+  },
+  {
+    "ccaa": "Islas Baleares",
+    "province": "Menorca",
+    "spots": [
+      {
+        "name": "Son Bou",
+        "type": "arena",
+        "swell": ["S","SE"],
+        "wind_good": ["N"],
+        "buoy": 6120,
+        "lat": 39.89,
+        "lon": 4.07,
+        "webcam": false
+      },
+      {
+        "name": "Cala Tirant",
+        "type": "arena",
+        "swell": ["N"],
+        "wind_good": ["S"],
+        "buoy": 6120,
+        "lat": 40.05,
+        "lon": 4.10,
+        "webcam": false
+      }
+    ]
+  },
+  {
+    "ccaa": "Islas Baleares",
+    "province": "Ibiza",
+    "spots": [
+      {
+        "name": "Playa d'en Bossa",
+        "type": "arena",
+        "swell": ["E","SE"],
+        "wind_good": ["NW"],
+        "buoy": 6130,
+        "lat": 38.88,
+        "lon": 1.40,
+        "webcam": false
+      },
+      {
+        "name": "Cala Nova",
+        "type": "arena",
+        "swell": ["E","NE"],
+        "wind_good": ["W"],
+        "buoy": 6130,
+        "lat": 39.02,
+        "lon": 1.59,
+        "webcam": false
+      },
+      {
+        "name": "Aguas Blancas",
+        "type": "roca",
+        "swell": ["NE","E"],
+        "wind_good": ["W"],
+        "buoy": 6130,
+        "lat": 39.03,
+        "lon": 1.60,
+        "webcam": false
+      }
+    ]
+  }
+]
