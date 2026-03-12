@@ -54,6 +54,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputPass = document.getElementById("regPass");
   const inputPass2 = document.getElementById("regPass2");
 
+  // MODAL LOGIN
+  const modalLogin = document.getElementById("modalLogin");
+  const formLogin = document.getElementById("formLogin");
+  const msgLogin = document.getElementById("msgLogin");
+
+  const btnAbrirLogin = document.getElementById("btnAbrirLogin");
+  const btnCerrarLogin = document.getElementById("btnCerrarLogin");
+  const btnCancelarLogin = document.getElementById("btnCancelarLogin");
+
+  const inputLoginUsuario = document.getElementById("loginUsuario");
+  const inputLoginPass = document.getElementById("loginPass");
+
   // REGEX
   const reNombre = /^[A-Za-zÀ-ÿÑñ]+(?:[ '\-][A-Za-zÀ-ÿÑñ]+)*$/;
   const reEmail = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
@@ -77,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicio.classList.remove("hidden");
     cerrarSpotPanel();
     cerrarRegistro();
+    cerrarLogin();
     ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
   }
 
@@ -206,59 +219,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function evaluarEstrellas({ ola, periodo, viento }) {
-  if (!Number.isFinite(ola) || !Number.isFinite(periodo) || !Number.isFinite(viento)) {
-    return { stars: 0, label: "—", score: 0 };
+    if (!Number.isFinite(ola) || !Number.isFinite(periodo) || !Number.isFinite(viento)) {
+      return { stars: 0, label: "—", score: 0 };
+    }
+
+    const olaScore =
+      ola < 0.4 ? 0 :
+      ola < 0.6 ? 8 :
+      ola < 0.9 ? 28 :
+      ola < 1.2 ? 55 :
+      ola < 1.5 ? 72 :
+      ola < 2.2 ? 88 :
+      ola < 3.0 ? 76 : 58;
+
+    const perScore =
+      periodo < 4 ? 5 :
+      periodo < 5 ? 15 :
+      periodo < 6 ? 30 :
+      periodo < 7 ? 48 :
+      periodo < 8 ? 62 :
+      periodo < 9 ? 74 :
+      periodo < 11 ? 88 : 95;
+
+    const vientoScore =
+      viento <= 4 ? 100 :
+      viento <= 8 ? 88 :
+      viento <= 12 ? 70 :
+      viento <= 16 ? 45 :
+      viento <= 22 ? 20 : 5;
+
+    let score = (0.55 * olaScore) + (0.20 * perScore) + (0.25 * vientoScore);
+
+    if (ola < 0.4) score = Math.min(score, 8);
+    else if (ola < 0.5) score = Math.min(score, 18);
+    else if (ola < 0.6) score = Math.min(score, 28);
+
+    score = clamp(score, 0, 100);
+
+    const stars =
+      score < 15 ? 0 :
+      score < 30 ? 1 :
+      score < 45 ? 2 :
+      score < 65 ? 3 :
+      score < 82 ? 4 : 5;
+
+    const label =
+      stars <= 1 ? "flat" :
+      stars === 2 ? "small" :
+      stars === 3 ? "fun" :
+      stars === 4 ? "good" :
+      "epic";
+
+    return { stars, label, score };
   }
-
-  const olaScore =
-    ola < 0.4 ? 0 :
-    ola < 0.6 ? 8 :
-    ola < 0.9 ? 28 :
-    ola < 1.2 ? 55 :
-    ola < 1.5 ? 72 :
-    ola < 2.2 ? 88 :
-    ola < 3.0 ? 76 : 58;
-
-  const perScore =
-    periodo < 4 ? 5 :
-    periodo < 5 ? 15 :
-    periodo < 6 ? 30 :
-    periodo < 7 ? 48 :
-    periodo < 8 ? 62 :
-    periodo < 9 ? 74 :
-    periodo < 11 ? 88 : 95;
-
-  const vientoScore =
-    viento <= 4 ? 100 :
-    viento <= 8 ? 88 :
-    viento <= 12 ? 70 :
-    viento <= 16 ? 45 :
-    viento <= 22 ? 20 : 5;
-
-  let score = (0.55 * olaScore) + (0.20 * perScore) + (0.25 * vientoScore);
-
-  if (ola < 0.4) score = Math.min(score, 8);
-  else if (ola < 0.5) score = Math.min(score, 18);
-  else if (ola < 0.6) score = Math.min(score, 28);
-
-  score = clamp(score, 0, 100);
-
-  const stars =
-    score < 15 ? 0 :
-    score < 30 ? 1 :
-    score < 45 ? 2 :
-    score < 65 ? 3 :
-    score < 82 ? 4 : 5;
-
-  const label =
-    stars <= 1 ? "flat" :
-    stars === 2 ? "small" :
-    stars === 3 ? "fun" :
-    stars === 4 ? "good" :
-    "epic";
-
-  return { stars, label, score };
-}
 
   function renderStars(stars) {
     const s = clamp(stars, 0, 5);
@@ -563,12 +576,74 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
+  // MODAL LOGIN
+  function setMsgLogin(texto, ok = false) {
+    if (!msgLogin) return;
+    msgLogin.textContent = texto;
+    msgLogin.style.color = ok ? "#d8ffe0" : "#ffd6d6";
+  }
+
+  function limpiarMsgLogin() {
+    if (!msgLogin) return;
+    msgLogin.textContent = "";
+  }
+
+  function abrirLogin() {
+    if (!modalLogin || !formLogin) return;
+    limpiarMsgLogin();
+    formLogin.reset();
+    modalLogin.classList.remove("hidden");
+    modalLogin.setAttribute("aria-hidden", "false");
+    inputLoginUsuario?.focus();
+  }
+
+  function cerrarLogin() {
+    if (!modalLogin) return;
+    modalLogin.classList.add("hidden");
+    modalLogin.setAttribute("aria-hidden", "true");
+  }
+
+  function validarLogin() {
+    if (!formLogin || !inputLoginUsuario || !inputLoginPass) return false;
+
+    const usuario = inputLoginUsuario.value.trim();
+    const password = inputLoginPass.value;
+
+    if (!formLogin.checkValidity()) {
+      formLogin.reportValidity();
+      return false;
+    }
+
+    if (!reNombre.test(usuario) || usuario.length < 2 || usuario.length > 40) {
+      setMsgLogin("Usuario inválido. Usa letras y espacios (2–40).");
+      inputLoginUsuario.focus();
+      return false;
+    }
+
+    if (!rePass.test(password)) {
+      setMsgLogin("La contraseña no cumple el formato requerido.");
+      inputLoginPass.focus();
+      return false;
+    }
+
+    limpiarMsgLogin();
+    return true;
+  }
+
   btnAbrirRegistro?.addEventListener("click", abrirRegistro);
   btnCerrarRegistro?.addEventListener("click", cerrarRegistro);
   btnCancelarRegistro?.addEventListener("click", cerrarRegistro);
 
+  btnAbrirLogin?.addEventListener("click", abrirLogin);
+  btnCerrarLogin?.addEventListener("click", cerrarLogin);
+  btnCancelarLogin?.addEventListener("click", cerrarLogin);
+
   modalRegistro?.addEventListener("click", (e) => {
     if (e.target === modalRegistro) cerrarRegistro();
+  });
+
+  modalLogin?.addEventListener("click", (e) => {
+    if (e.target === modalLogin) cerrarLogin();
   });
 
   formRegistro?.addEventListener("submit", async (e) => {
@@ -605,12 +680,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  formLogin?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!validarLogin()) return;
+
+    setMsgLogin("Login correcto.", true);
+
+    setTimeout(() => {
+      cerrarLogin();
+    }, 700);
+  });
+
   // ESC
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
 
     if (modalRegistro && !modalRegistro.classList.contains("hidden")) {
       cerrarRegistro();
+      return;
+    }
+
+    if (modalLogin && !modalLogin.classList.contains("hidden")) {
+      cerrarLogin();
       return;
     }
 
