@@ -206,46 +206,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function evaluarEstrellas({ ola, periodo, viento }) {
-    if (!Number.isFinite(ola) || !Number.isFinite(periodo) || !Number.isFinite(viento)) {
-      return { stars: 0, label: "—", score: 0 };
-    }
-
-    const olaScore =
-      ola < 0.3 ? 0 :
-      ola < 0.8 ? 20 :
-      ola < 1.2 ? 55 :
-      ola < 2.2 ? 75 :
-      ola < 3.0 ? 60 : 40;
-
-    const perScore =
-      periodo < 4 ? 5 :
-      periodo < 5 ? 20 :
-      periodo < 6 ? 40 :
-      periodo < 7 ? 60 :
-      periodo < 9 ? 80 :
-      periodo < 11 ? 95 : 85;
-
-    const vientoScore =
-      viento <= 4 ? 100 :
-      viento <= 8 ? 90 :
-      viento <= 12 ? 75 :
-      viento <= 16 ? 55 :
-      viento <= 22 ? 30 : 10;
-
-    let score = (0.30 * olaScore) + (0.25 * perScore) + (0.45 * vientoScore);
-    score = clamp(score, 0, 100);
-
-    const stars = clamp(Math.round(score / 20), 0, 5);
-
-    const label =
-      stars <= 1 ? "choppy" :
-      stars === 2 ? "bumpy" :
-      stars === 3 ? "fun" :
-      stars === 4 ? "clean" :
-      "glassy";
-
-    return { stars, label, score };
+  if (!Number.isFinite(ola) || !Number.isFinite(periodo) || !Number.isFinite(viento)) {
+    return { stars: 0, label: "—", score: 0 };
   }
+
+  const olaScore =
+    ola < 0.4 ? 0 :
+    ola < 0.6 ? 8 :
+    ola < 0.9 ? 28 :
+    ola < 1.2 ? 55 :
+    ola < 1.5 ? 72 :
+    ola < 2.2 ? 88 :
+    ola < 3.0 ? 76 : 58;
+
+  const perScore =
+    periodo < 4 ? 5 :
+    periodo < 5 ? 15 :
+    periodo < 6 ? 30 :
+    periodo < 7 ? 48 :
+    periodo < 8 ? 62 :
+    periodo < 9 ? 74 :
+    periodo < 11 ? 88 : 95;
+
+  const vientoScore =
+    viento <= 4 ? 100 :
+    viento <= 8 ? 88 :
+    viento <= 12 ? 70 :
+    viento <= 16 ? 45 :
+    viento <= 22 ? 20 : 5;
+
+  let score = (0.55 * olaScore) + (0.20 * perScore) + (0.25 * vientoScore);
+
+  if (ola < 0.4) score = Math.min(score, 8);
+  else if (ola < 0.5) score = Math.min(score, 18);
+  else if (ola < 0.6) score = Math.min(score, 28);
+
+  score = clamp(score, 0, 100);
+
+  const stars =
+    score < 15 ? 0 :
+    score < 30 ? 1 :
+    score < 45 ? 2 :
+    score < 65 ? 3 :
+    score < 82 ? 4 : 5;
+
+  const label =
+    stars <= 1 ? "flat" :
+    stars === 2 ? "small" :
+    stars === 3 ? "fun" :
+    stars === 4 ? "good" :
+    "epic";
+
+  return { stars, label, score };
+}
 
   function renderStars(stars) {
     const s = clamp(stars, 0, 5);

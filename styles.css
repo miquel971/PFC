@@ -129,7 +129,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background:#000000;
+  background:#01213e;
 }
 
 .brand {
@@ -137,6 +137,7 @@ body {
   gap: 10px;
   align-items: center;
   font-weight: bold;
+  color: white;
 }
 
 .controls {
@@ -149,7 +150,7 @@ body {
 
 .select {
   padding: 8px 10px;
-  border-radius: 8px;
+  border-radius: 0px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
   color: white;
@@ -169,7 +170,7 @@ body {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.25s ease;
-  border-radius: 10px;
+  border-radius: 0px;
   backdrop-filter: blur(4px);
 }
 
@@ -221,7 +222,7 @@ body {
 
 .mapa-pequeno {
   height: 100%;
-  border-radius: 12px;
+  border-radius: 0px;
   overflow: hidden;
 }
 
@@ -239,7 +240,7 @@ body {
   left: 12px;
   bottom: 12px;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 0px;
   background: rgba(0, 0, 0, 0.70);
   border: 1px solid rgba(255, 255, 255, 0.15);
   max-width: 420px;
@@ -266,7 +267,7 @@ body {
   width: min(920px, 92vw);
   height: min(720px, 86vh);
   background: #7a7b7c;
-  border-radius: 14px;
+  border-radius: 0px;
   overflow: hidden;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -282,7 +283,7 @@ body {
   background: rgba(255, 255, 255, 0.15);
   color: white;
   padding: 8px 10px;
-  border-radius: 10px;
+  border-radius: 0px;
   cursor: pointer;
   z-index: 2;
 }
@@ -347,7 +348,7 @@ body {
 .auth-input {
   width: 100%;
   padding: 11px 12px;
-  border-radius: 8px;
+  border-radius: 0px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.95);
   color: #222;
@@ -383,7 +384,7 @@ body {
 .card {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 14px;
   backdrop-filter: blur(6px);
 }
@@ -406,7 +407,7 @@ body {
 
 .badge {
   padding: 6px 10px;
-  border-radius: 999px;
+  border-radius: 0px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.09);
   font-size: 12px;
@@ -425,7 +426,7 @@ body {
   min-height: 0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
+  border-radius: 0px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -460,7 +461,7 @@ body {
 .ficha-arriba {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -482,7 +483,7 @@ body {
 .dato {
   border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(0, 0, 0, 0.18);
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 10px;
 }
 
@@ -528,7 +529,7 @@ body {
 
 .mapa-box {
   background: rgba(236, 234, 234, 0.18);
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 10px;
   overflow: hidden;
   display: flex;
@@ -541,7 +542,7 @@ body {
   flex: 1;
   min-height: 320px;
   border: 0;
-  border-radius: 10px;
+  border-radius: 0px;
   background: #fff;
 }
 
