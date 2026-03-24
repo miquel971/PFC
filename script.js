@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const tituloVistaInfo = document.getElementById("tituloVistaInfo");
   const contenidoVistaInfo = document.getElementById("contenidoVistaInfo");
   const cerrarVistaInfo = document.getElementById("cerrarVistaInfo");
+
   const btnQuienes = document.getElementById("btnQuienes");
   const btnServicios = document.getElementById("btnServicios");
+  const btnContacto = document.getElementById("btnContacto");
 
   if (videoLanding) videoLanding.playbackRate = 0.6;
 
@@ -73,30 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const reNombre = /^[A-Za-zÀ-ÿÑñ]+(?:[ '\-][A-Za-zÀ-ÿÑñ]+)*$/u;
   const reEmail = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
   const rePass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,72}$/;
-  
-// quienes somos / servicios
 
-btnQuienes?.addEventListener("click", () => {
-  abrirVistaInfo("Quiénes somos", `
-    <p><b>SuperSpot</b> es una plataforma para surfistas que quieren saber dónde ir en cada momento.</p>
-    <br>
-    <p>Analizamos condiciones en tiempo real y te mostramos los mejores spots según mar, viento y periodo.</p>
-  `);
-});
-
-btnServicios?.addEventListener("click", () => {
-  abrirVistaInfo("Servicios", `
-    <ul>
-      <li>Predicción de olas en tiempo real</li>
-      <li>Ranking automático de spots</li>
-      <li>Mapas Windy integrados</li>
-      <li>Base de datos de spots</li>
-      <li>Panel personalizado (en desarrollo)</li>
-    </ul>
-  `);
-});
-
-cerrarVistaInfo?.addEventListener("click", cerrarVistaInfoFn);
   function ponerEstado(texto) {
     if (estado) estado.textContent = texto;
   }
@@ -670,31 +649,45 @@ cerrarVistaInfo?.addEventListener("click", cerrarVistaInfoFn);
   btnCerrarLogin?.addEventListener("click", cerrarLogin);
   btnCancelarLogin?.addEventListener("click", cerrarLogin);
 
-  btnQuienes?.addEventListener("click", () => {
+  btnQuienes?.addEventListener("click", (e) => {
+    e.preventDefault();
     abrirVistaInfo("Quiénes somos", `
       <div class="section-title">Quiénes somos</div>
       <p style="margin-top:12px;">
         superSpot es una plataforma pensada para consultar spots de forma clara, rápida y visual.
-        Buscamos reunir navegación, previsión e información útil dentro de una misma experiencia.
       </p>
       <p style="margin-top:12px;">
-        Nuestro enfoque combina simplicidad, acceso rápido a datos y una interfaz limpia para que
-        la consulta sea directa y cómoda.
+        Reunimos navegación, previsión e información útil dentro de una misma experiencia.
       </p>
     `);
   });
 
-  btnServicios?.addEventListener("click", () => {
+  btnServicios?.addEventListener("click", (e) => {
+    e.preventDefault();
     abrirVistaInfo("Servicios", `
       <div class="section-title">Servicios</div>
       <p style="margin-top:12px;">
-        superSpot permite explorar zonas, cargar spots, consultar mapas y visualizar información
-        relevante de manera centralizada.
+        superSpot permite explorar zonas, cargar spots, consultar mapas y visualizar información relevante
+        de forma rápida y centralizada.
       </p>
+    `);
+  });
+
+  btnContacto?.addEventListener("click", (e) => {
+    e.preventDefault();
+    abrirVistaInfo("Contacto", `
+      <div class="section-title">Contacto</div>
       <p style="margin-top:12px;">
-        La plataforma está preparada para incorporar nuevas funciones, filtros y herramientas
-        orientadas a mejorar la experiencia del usuario.
+        Puedes escribirnos para información, colaboraciones o soporte.
       </p>
+      <form style="margin-top:18px; display:flex; flex-direction:column; gap:12px; max-width:720px;">
+        <input class="auth-input" type="text" placeholder="Nombre">
+        <input class="auth-input" type="email" placeholder="Email">
+        <textarea class="auth-input" placeholder="Mensaje" rows="6" style="resize:vertical;"></textarea>
+        <div>
+          <button type="button" class="btn">Enviar</button>
+        </div>
+      </form>
     `);
   });
 
@@ -736,6 +729,7 @@ cerrarVistaInfo?.addEventListener("click", cerrarVistaInfoFn);
         cerrarRegistro();
         abrirLogin();
       }, 900);
+
     } catch (error) {
       console.error(error);
       setMsgRegistro("Error de red o del servidor.");
@@ -774,6 +768,7 @@ cerrarVistaInfo?.addEventListener("click", cerrarVistaInfoFn);
         cerrarLogin();
         window.location.href = "panel/dashboard.php";
       }, 700);
+
     } catch (error) {
       console.error(error);
       setMsgLogin("Error de red o del servidor.");
