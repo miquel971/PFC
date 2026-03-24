@@ -750,26 +750,26 @@ body {
 .card-transparente {
   background: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 0cap solid rgba(255, 255, 255, 0.18);
   padding: 22px;
 }
 
 .card-transparente .section-title {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.70);
 }
 
 .quienes-titulo {
   margin-top: 10px;
   font-size: 2.2rem;
   line-height: 1.2;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.70);
 }
 
 .quienes-texto {
   margin-top: 14px;
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.70);
 }
 
 .quienes-grid {
@@ -784,6 +784,65 @@ body {
   }
 
   .panel-info-bg {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* SERVICIOS */
+
+.servicios-bg {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  padding: 48px 24px;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("img/servicios.jpg") center center / cover no-repeat;
+
+  background-attachment: fixed;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.panel-servicios {
+  width: 100%;
+  max-width: 720px;
+  margin-right: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.servicios-titulo {
+  margin-top: 10px;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.servicios-texto {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.92);
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .servicios-bg {
+    justify-content: center;
+  }
+
+  .panel-servicios {
     max-width: 100%;
     margin-right: 0;
   }

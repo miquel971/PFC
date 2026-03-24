@@ -1,45 +1,74 @@
-<div class="panel" style="gap: 18px;">
-  <div class="card">
-    <div class="section-title">Quiénes somos</div>
-    <h1 style="margin-top: 10px; font-size: 2rem; line-height: 1.2; color: #01213e;">
-      Impulsamos la presencia digital de negocios que quieren crecer
-    </h1>
-    <p style="margin-top: 14px; font-size: 1rem; line-height: 1.7;">
-      En Superspot ayudamos a empresas, profesionales y marcas a construir una presencia online
-      clara, sólida y profesional. Diseñamos páginas corporativas pensadas para transmitir confianza,
-      mejorar la imagen del negocio y convertir visitas en oportunidades reales.
-    </p>
-  </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Servicios | superSpot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-    <div class="card">
-      <div class="section-title">Nuestra visión</div>
-      <p style="margin-top: 12px; line-height: 1.7;">
-        Creemos que una web debe servir para comunicar mejor, proyectar una imagen profesional y facilitar que el cliente entienda qué hace tu negocio.
-      </p>
+  <header class="topbar">
+    <div class="brand">
+      <strong>superSpot</strong>
     </div>
 
-    <div class="card">
-      <div class="section-title">Nuestra forma de trabajar</div>
-      <p style="margin-top: 12px; line-height: 1.7;">
-        Analizamos cada proyecto según sus objetivos. Desarrollamos una web coherente, moderna y funcional con un enfoque directo y práctico.
-      </p>
+    <div class="controls">
+      <a href="index.html" class="btn btn-secondary">Inicio</a>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="section-title">Qué nos define</div>
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px;">
-      <div class="dato">
-        <div class="k">Valor 01</div>
-        <div class="v">Claridad</div>
-        <div class="muted">Mensajes directos y fáciles de entender.</div>
+    <nav class="menu-superior">
+      <a href="quienes.html" class="menu-link">Quiénes somos</a>
+      <a href="servicios.html" class="menu-link">Servicios</a>
+      <a href="contacto.html" class="menu-link">Contacto</a>
+      <a href="index.html" class="menu-link">Login</a>
+      <a href="index.html" class="menu-link">Registro</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="servicios-bg">
+      <div class="panel-servicios">
+
+        <div class="card card-transparente">
+
+          <h1 class="servicios-titulo">
+            Predicción, análisis y exploración de los mejores spots
+          </h1>
+
+          <p class="servicios-texto">
+              SuperSpot es una plataforma diseñada para surfistas que buscan información clara, rápida y útil sobre el estado del mar. 
+              Reunimos predicción, mapas, datos en tiempo real y herramientas de exploración para ayudarte a elegir el mejor spot en cada momento.          </p>
+        </div>
+
+        <div class="servicios-grid">
+          <div class="card card-transparente">
+            <div class="section-title">Predicción de olas</div>
+            <p class="servicios-texto">
+              Consulta altura, periodo y dirección del oleaje en tiempo real. 
+              Visualiza de forma sencilla cuándo y dónde se dan las mejores condiciones.
+            </p>
+          </div>
+
+          <div class="card card-transparente">
+            <div class="section-title">Infomarción del viento</div>
+            <p class="servicios-texto">
+            Analiza la velocidad y dirección del viento para entender cómo afectará al estado del mar. 
+            Una herramienta clave para anticipar la calidad del surf.            </p>
+          </div>
+
+          <div class="card card-transparente">
+            <div class="section-title">Añade tus propios spots</div>
+            <p class="servicios-texto">
+              Añade mediante longitud y altitud un punto en la costa para conocer mediante nuestras predicciones
+              el estado de las olas, vientos etc.
+            </p>
+          </div>
+        </div>
+
       </div>
-      <div class="dato">
-        <div class="k">Valor 02</div>
-        <div class="v">Diseño útil</div>
-        <div class="muted">Cada elemento tiene una función real.</div>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
+  </main>
+
+</body>
+</html>
