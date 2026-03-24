@@ -134,7 +134,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #01213e;
+  background: #080808;
 }
 
 .brand {
@@ -798,7 +798,7 @@ body {
 
   background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("img/servicios.jpg") center center / cover no-repeat;
+    url("img/servicios.jpeg") center center / cover no-repeat;
 
   background-attachment: fixed;
 
@@ -845,5 +845,95 @@ body {
   .panel-servicios {
     max-width: 100%;
     margin-right: 0;
+  }
+}
+
+/* CONTACTO */
+
+.contacto-bg {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  padding: 48px 24px;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("img/contacto.jpeg") center center / cover no-repeat;
+
+  background-attachment: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel-contacto {
+  width: 100%;
+  max-width: 760px;
+  margin-right: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contacto-titulo {
+  margin-top: 10px;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.contacto-texto {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.92);
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contacto-input {
+  background: rgba(255, 255, 255, 0.92);
+  color: #222;
+}
+
+.contacto-textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+.contacto-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .contacto-bg {
+    justify-content: center;
+  }
+
+  .panel-contacto {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .contacto-grid,
+  .contacto-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-titulo {
+    font-size: 1.8rem;
   }
 }
