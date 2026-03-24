@@ -56,12 +56,14 @@
       </div>
 
       <nav>
+        <button id="btnQuienes" class="nav-btn" type="button">Quiénes somos</button>
+        <button id="btnServicios" class="nav-btn" type="button">Servicios</button>
         <button id="btnAbrirLogin" class="nav-btn" type="button">Login</button>
         <button id="btnAbrirRegistro" class="nav-btn" type="button">Registro</button>
       </nav>
     </header>
 
-    <main class="main">
+    <main id="vistaPrincipal" class="main">
       <div class="layout">
         <div id="mapa" class="mapa-pequeno"></div>
 
@@ -72,10 +74,10 @@
 
           <div class="card" id="cardFotoDia">
             <div class="section-title">Foto del día</div><br>
-            <img src="img/foto-dia.jpg" alt="Foto del día" style="width:100%; border-radius:0px; display:block;">
+            <img src="img/foto-dia.jpg" alt="Foto del día" style="width:100%; border-radius:0; display:block;">
           </div>
 
-          <!-- PANEL DEL SPOT INTEGRADO -->
+          <!-- PANEL DEL SPOT -->
           <section id="spotPanel" class="spot-panel hidden">
             <div class="spot-panel-head">
               <div>
@@ -163,6 +165,27 @@
         Selecciona zona y pulsa “Cargar spots”.
       </div>
     </main>
+
+    <!-- VISTA INTERNA: QUIÉNES / SERVICIOS -->
+    <section
+      id="vistaInfo"
+      class="hidden"
+      style="padding: 12px; min-height: calc(100vh - 64px); min-height: calc(100dvh - 64px);"
+    >
+      <div
+        class="card"
+        style="height: 100%; min-height: calc(100vh - 88px); min-height: calc(100dvh - 88px); overflow: auto;"
+      >
+        <div
+          style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px;"
+        >
+          <div id="tituloVistaInfo" class="modal-title">Información</div>
+          <button id="cerrarVistaInfo" class="btn btn-secondary" type="button">Volver</button>
+        </div>
+
+        <div id="contenidoVistaInfo" style="line-height:1.75;"></div>
+      </div>
+    </section>
   </div>
 
   <!-- MODAL LOGIN -->
@@ -172,22 +195,20 @@
 
       <div class="modal-head">
         <div class="modal-title">Iniciar sesión</div>
-        <div class="modal-subtitle">Usuario y contraseña</div>
+        <div class="modal-subtitle">Email y contraseña</div>
       </div>
 
       <form id="formLogin" class="modal-body auth-form" novalidate>
-
-        <label class="visually-hidden" for="loginUsuario">Usuario</label>
+        <label class="visually-hidden" for="loginEmail">Email</label>
         <input
-          id="loginUsuario"
+          id="loginEmail"
           class="auth-input"
-          type="text"
-          name="usuario"
-          placeholder="Usuario"
+          type="email"
+          name="email"
+          placeholder="Email"
           required
-          minlength="2"
-          maxlength="40"
-          autocomplete="username"
+          maxlength="120"
+          autocomplete="email"
         >
 
         <label class="visually-hidden" for="loginPass">Contraseña</label>
@@ -224,7 +245,7 @@
 
       <div class="modal-head">
         <div class="modal-title">Crear cuenta</div>
-        <div class="modal-subtitle">Nombre, email y contraseña</div>
+        <div class="modal-subtitle">Nombre, email, zona y contraseña</div>
       </div>
 
       <form id="formRegistro" class="modal-body auth-form" novalidate>
@@ -247,7 +268,7 @@
           class="auth-input"
           type="email"
           name="email"
-          placeholder="email: ejemplo@gmail.com"
+          placeholder="Email"
           required
           maxlength="120"
           autocomplete="email"
@@ -306,4 +327,5 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

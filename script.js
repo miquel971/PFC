@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ELEMENTOS PRINCIPALES
   const inicio = document.getElementById("inicio");
   const aplicacion = document.getElementById("aplicacion");
 
@@ -12,9 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const recoBox = document.getElementById("recoBox");
   const cardFotoDia = document.getElementById("cardFotoDia");
 
+  const vistaPrincipal = document.getElementById("vistaPrincipal");
+  const vistaInfo = document.getElementById("vistaInfo");
+  const tituloVistaInfo = document.getElementById("tituloVistaInfo");
+  const contenidoVistaInfo = document.getElementById("contenidoVistaInfo");
+  const cerrarVistaInfo = document.getElementById("cerrarVistaInfo");
+  const btnQuienes = document.getElementById("btnQuienes");
+  const btnServicios = document.getElementById("btnServicios");
+
   if (videoLanding) videoLanding.playbackRate = 0.6;
 
-  // PANEL SPOT
   const spotPanel = document.getElementById("spotPanel");
   const botonCerrarSpot = document.getElementById("botonCerrarSpot");
   const botonCentrarMapa = document.getElementById("botonCentrarMapa");
@@ -39,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonMapaOlas = document.getElementById("botonMapaOlas");
   const botonMapaViento = document.getElementById("botonMapaViento");
 
-  // MODAL REGISTRO
   const modalRegistro = document.getElementById("modalRegistro");
   const formRegistro = document.getElementById("formRegistro");
   const msgRegistro = document.getElementById("msgRegistro");
@@ -54,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputPass = document.getElementById("regPass");
   const inputPass2 = document.getElementById("regPass2");
 
-  // MODAL LOGIN
   const modalLogin = document.getElementById("modalLogin");
   const formLogin = document.getElementById("formLogin");
   const msgLogin = document.getElementById("msgLogin");
@@ -63,28 +67,64 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCerrarLogin = document.getElementById("btnCerrarLogin");
   const btnCancelarLogin = document.getElementById("btnCancelarLogin");
 
-  const inputLoginUsuario = document.getElementById("loginUsuario");
+  const inputLoginEmail = document.getElementById("loginEmail");
   const inputLoginPass = document.getElementById("loginPass");
 
-  // REGEX
-  const reNombre = /^[A-Za-zÀ-ÿÑñ]+(?:[ '\-][A-Za-zÀ-ÿÑñ]+)*$/;
+  const reNombre = /^[A-Za-zÀ-ÿÑñ]+(?:[ '\-][A-Za-zÀ-ÿÑñ]+)*$/u;
   const reEmail = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
   const rePass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,72}$/;
+  
+// quienes somos / servicios
 
+btnQuienes?.addEventListener("click", () => {
+  abrirVistaInfo("Quiénes somos", `
+    <p><b>SuperSpot</b> es una plataforma para surfistas que quieren saber dónde ir en cada momento.</p>
+    <br>
+    <p>Analizamos condiciones en tiempo real y te mostramos los mejores spots según mar, viento y periodo.</p>
+  `);
+});
+
+btnServicios?.addEventListener("click", () => {
+  abrirVistaInfo("Servicios", `
+    <ul>
+      <li>Predicción de olas en tiempo real</li>
+      <li>Ranking automático de spots</li>
+      <li>Mapas Windy integrados</li>
+      <li>Base de datos de spots</li>
+      <li>Panel personalizado (en desarrollo)</li>
+    </ul>
+  `);
+});
+
+cerrarVistaInfo?.addEventListener("click", cerrarVistaInfoFn);
   function ponerEstado(texto) {
     if (estado) estado.textContent = texto;
   }
 
-  // =========================
-  // NAVEGACIÓN INICIO <-> APP
-  // =========================
+  function abrirVistaInfo(titulo, html) {
+    if (!vistaPrincipal || !vistaInfo || !tituloVistaInfo || !contenidoVistaInfo) return;
+    cerrarSpotPanel();
+    tituloVistaInfo.textContent = titulo;
+    contenidoVistaInfo.innerHTML = html;
+    vistaPrincipal.classList.add("hidden");
+    vistaInfo.classList.remove("hidden");
+  }
+
+  function cerrarVistaInfoFn() {
+    if (!vistaPrincipal || !vistaInfo) return;
+    vistaInfo.classList.add("hidden");
+    vistaPrincipal.classList.remove("hidden");
+  }
+
   function mostrarAplicacion() {
     inicio.classList.add("hidden");
     aplicacion.classList.remove("hidden");
+    cerrarVistaInfoFn();
     requestAnimationFrame(() => mapa.invalidateSize());
   }
 
   function mostrarInicio() {
+    cerrarVistaInfoFn();
     aplicacion.classList.add("hidden");
     inicio.classList.remove("hidden");
     cerrarSpotPanel();
@@ -106,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   botonVolverInicio?.addEventListener("click", mostrarInicio);
 
-  // MAPA LEAFLET
   if (typeof L === "undefined") {
     ponerEstado("ERROR: Leaflet no está cargado.");
     console.error("Leaflet no está cargado: L es undefined");
@@ -155,7 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return Number(String(v).trim().replace(",", "."));
   }
 
-  // BD -> API PHP
   async function cargarSpotsDesdeBD() {
     ponerEstado("Cargando spots desde BD...");
     const res = await fetch("api/spots.php?ts=" + Date.now());
@@ -181,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter((r) => Number.isFinite(r.lat) && Number.isFinite(r.lon));
   }
 
-  // WINDY MAPS
   function crearUrlMapa({ lat, lon, zoom, overlay }) {
     const u = new URL("https://embed.windy.com/embed2.html");
     u.searchParams.set("lat", String(lat));
@@ -207,7 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
     iframeViento.src = crearUrlMapa({ lat: spot.lat, lon: spot.lon, zoom, overlay: "wind" });
   }
 
-  // UTILIDADES
   function degToCompass(deg) {
     if (!Number.isFinite(deg)) return "—";
     const dirs = ["N", "NE", "E", "SE", "S", "SO", "O", "NO"];
@@ -278,7 +314,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return "★".repeat(s) + "☆".repeat(5 - s);
   }
 
-  // OPEN-METEO
   async function obtenerPrediccionAhora(lat, lon) {
     const urlMarine =
       "https://marine-api.open-meteo.com/v1/marine" +
@@ -337,7 +372,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // RECOMENDACIÓN
   function pintarTop3(ranking, zonaLabel) {
     if (!recoBox) return;
 
@@ -384,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
           viento: p.windSpeed
         });
         return { ok: true, spot, eva };
-      } catch (e) {
+      } catch {
         return { ok: false, spot, eva: { stars: 0, label: "—", score: 0 } };
       }
     });
@@ -409,7 +443,6 @@ document.addEventListener("DOMContentLoaded", () => {
     pintarTop3(ranking, zonaLabel);
   }
 
-  // PANEL SPOT
   let spotActual = null;
 
   function abrirSpotPanel(spot) {
@@ -498,7 +531,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (spotActual) cargarMapas(spotActual);
   });
 
-  // MODAL REGISTRO
   function setMsgRegistro(texto, ok = false) {
     if (!msgRegistro) return;
     msgRegistro.textContent = texto;
@@ -576,7 +608,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // MODAL LOGIN
   function setMsgLogin(texto, ok = false) {
     if (!msgLogin) return;
     msgLogin.textContent = texto;
@@ -594,7 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formLogin.reset();
     modalLogin.classList.remove("hidden");
     modalLogin.setAttribute("aria-hidden", "false");
-    inputLoginUsuario?.focus();
+    inputLoginEmail?.focus();
   }
 
   function cerrarLogin() {
@@ -604,24 +635,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function validarLogin() {
-    if (!formLogin || !inputLoginUsuario || !inputLoginPass) return false;
+    if (!formLogin || !inputLoginEmail || !inputLoginPass) return false;
 
-    const usuario = inputLoginUsuario.value.trim();
+    const email = inputLoginEmail.value.trim();
     const password = inputLoginPass.value;
 
-    if (!formLogin.checkValidity()) {
-      formLogin.reportValidity();
+    if (!email) {
+      setMsgLogin("Introduce tu email.");
+      inputLoginEmail.focus();
       return false;
     }
 
-    if (!reNombre.test(usuario) || usuario.length < 2 || usuario.length > 40) {
-      setMsgLogin("Usuario inválido. Usa letras y espacios (2–40).");
-      inputLoginUsuario.focus();
+    if (!reEmail.test(email)) {
+      setMsgLogin("Email inválido.");
+      inputLoginEmail.focus();
       return false;
     }
 
-    if (!rePass.test(password)) {
-      setMsgLogin("La contraseña no cumple el formato requerido.");
+    if (!password) {
+      setMsgLogin("Introduce tu contraseña.");
       inputLoginPass.focus();
       return false;
     }
@@ -637,6 +669,36 @@ document.addEventListener("DOMContentLoaded", () => {
   btnAbrirLogin?.addEventListener("click", abrirLogin);
   btnCerrarLogin?.addEventListener("click", cerrarLogin);
   btnCancelarLogin?.addEventListener("click", cerrarLogin);
+
+  btnQuienes?.addEventListener("click", () => {
+    abrirVistaInfo("Quiénes somos", `
+      <div class="section-title">Quiénes somos</div>
+      <p style="margin-top:12px;">
+        superSpot es una plataforma pensada para consultar spots de forma clara, rápida y visual.
+        Buscamos reunir navegación, previsión e información útil dentro de una misma experiencia.
+      </p>
+      <p style="margin-top:12px;">
+        Nuestro enfoque combina simplicidad, acceso rápido a datos y una interfaz limpia para que
+        la consulta sea directa y cómoda.
+      </p>
+    `);
+  });
+
+  btnServicios?.addEventListener("click", () => {
+    abrirVistaInfo("Servicios", `
+      <div class="section-title">Servicios</div>
+      <p style="margin-top:12px;">
+        superSpot permite explorar zonas, cargar spots, consultar mapas y visualizar información
+        relevante de manera centralizada.
+      </p>
+      <p style="margin-top:12px;">
+        La plataforma está preparada para incorporar nuevas funciones, filtros y herramientas
+        orientadas a mejorar la experiencia del usuario.
+      </p>
+    `);
+  });
+
+  cerrarVistaInfo?.addEventListener("click", cerrarVistaInfoFn);
 
   modalRegistro?.addEventListener("click", (e) => {
     if (e.target === modalRegistro) cerrarRegistro();
@@ -672,8 +734,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         cerrarRegistro();
+        abrirLogin();
       }, 900);
-
     } catch (error) {
       console.error(error);
       setMsgRegistro("Error de red o del servidor.");
@@ -685,14 +747,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!validarLogin()) return;
 
-    setMsgLogin("Login correcto.", true);
+    setMsgLogin("Comprobando...");
 
-    setTimeout(() => {
-      cerrarLogin();
-    }, 700);
+    try {
+      const datos = new FormData(formLogin);
+
+      const res = await fetch("login_ajax.php", {
+        method: "POST",
+        body: datos
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data || !data.ok) {
+        setMsgLogin(data?.error || "Email o contraseña incorrectos.");
+        return;
+      }
+
+      if (data.rol === "admin") {
+        setMsgLogin("Login correcto. Bienvenido, administrador.", true);
+      } else {
+        setMsgLogin("Login correcto.", true);
+      }
+
+      setTimeout(() => {
+        cerrarLogin();
+        window.location.href = "panel/dashboard.php";
+      }, 700);
+    } catch (error) {
+      console.error(error);
+      setMsgLogin("Error de red o del servidor.");
+    }
   });
 
-  // ESC
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
 
@@ -706,12 +793,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (vistaInfo && !vistaInfo.classList.contains("hidden")) {
+      cerrarVistaInfoFn();
+      return;
+    }
+
     if (spotPanel && !spotPanel.classList.contains("hidden")) {
       cerrarSpotPanel();
     }
   });
 
-  // MARCADORES
   function añadirMarcadorSpot(spot) {
     if (!Number.isFinite(spot.lat) || !Number.isFinite(spot.lon)) return;
 
@@ -729,9 +820,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // CARGA + RENDER
   async function cargarYMostrarSpots() {
     try {
+      cerrarVistaInfoFn();
       capaSpots.clearLayers();
       cerrarSpotPanel();
 
