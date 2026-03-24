@@ -26,11 +26,11 @@
       </div>
 
       <div class="landing-actions">
-        <button class="btn btn-cta" data-zona="bal">Baleares</button>
-        <button class="btn btn-cta" data-zona="med">Mediterráneo</button>
-        <button class="btn btn-cta" data-zona="cant">Cantábrico</button>
-        <button class="btn btn-cta" data-zona="pv">País Vasco</button>
-        <button class="btn btn-cta" data-zona="gal">Galicia</button>
+        <button class="btn btn-cta" data-zona="bal" type="button">Baleares</button>
+        <button class="btn btn-cta" data-zona="med" type="button">Mediterráneo</button>
+        <button class="btn btn-cta" data-zona="cant" type="button">Cantábrico</button>
+        <button class="btn btn-cta" data-zona="pv" type="button">País Vasco</button>
+        <button class="btn btn-cta" data-zona="gal" type="button">Galicia</button>
       </div>
     </div>
   </section>
@@ -51,17 +51,17 @@
           <option value="gal">Galicia</option>
         </select>
 
-        <button id="botonCargarSpots" class="btn">Cargar spots</button>
-        <button id="botonVolverInicio" class="btn btn-secondary">Inicio</button>
+        <button id="botonCargarSpots" class="btn" type="button">Cargar spots</button>
+        <button id="botonVolverInicio" class="btn btn-secondary" type="button">Inicio</button>
       </div>
 
       <nav class="menu-superior">
-  <button id="btnQuienes" class="menu-link" type="button">Quiénes somos</button>
-  <button id="btnServicios" class="menu-link" type="button">Servicios</button>
-  <button id="btnContacto" class="menu-link" type="button">Contacto</button>
-  <button id="btnAbrirLogin" class="menu-link" type="button">Login</button>
-  <button id="btnAbrirRegistro" class="menu-link" type="button">Registro</button>
-</nav>
+        <a href="quienes.html" class="menu-link">Quiénes somos</a>
+        <a href="servicios.html" class="menu-link">Servicios</a>
+        <a href="contacto.html" class="menu-link">Contacto</a>
+        <button id="btnAbrirLogin" class="menu-link" type="button">Login</button>
+        <button id="btnAbrirRegistro" class="menu-link" type="button">Registro</button>
+      </nav>
     </header>
 
     <main id="vistaPrincipal" class="main">
@@ -87,8 +87,8 @@
               </div>
 
               <div class="ficha-acciones">
-                <button id="botonCentrarMapa" class="btn btn-secondary">Centrar</button>
-                <button id="botonCerrarSpot" class="btn">Cerrar</button>
+                <button id="botonCentrarMapa" class="btn btn-secondary" type="button">Centrar</button>
+                <button id="botonCerrarSpot" class="btn" type="button">Cerrar</button>
               </div>
             </div>
 
@@ -140,8 +140,8 @@
                   <div class="section-title">Predicción (mapas)</div>
 
                   <div class="mapas-botones">
-                    <button id="botonMapaOlas" class="btn btn-secondary">Olas</button>
-                    <button id="botonMapaViento" class="btn btn-secondary">Viento</button>
+                    <button id="botonMapaOlas" class="btn btn-secondary" type="button">Olas</button>
+                    <button id="botonMapaViento" class="btn btn-secondary" type="button">Viento</button>
                   </div>
                 </div>
 
@@ -166,27 +166,6 @@
         Selecciona zona y pulsa “Cargar spots”.
       </div>
     </main>
-
-    <!-- VISTA INTERNA: QUIÉNES / SERVICIOS -->
-    <section
-      id="vistaInfo"
-      class="hidden"
-      style="padding: 12px; min-height: calc(100vh - 64px); min-height: calc(100dvh - 64px);"
-    >
-      <div
-        class="card"
-        style="height: 100%; min-height: calc(100vh - 88px); min-height: calc(100dvh - 88px); overflow: auto;"
-      >
-        <div
-          style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px;"
-        >
-          <div id="tituloVistaInfo" class="modal-title">Información</div>
-          <button id="cerrarVistaInfo" class="btn btn-secondary" type="button">Volver</button>
-        </div>
-
-        <div id="contenidoVistaInfo" style="line-height:1.75;"></div>
-      </div>
-    </section>
   </div>
 
   <!-- MODAL LOGIN -->

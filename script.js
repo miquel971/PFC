@@ -80,20 +80,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if (estado) estado.textContent = texto;
   }
 
-  function abrirVistaInfo(titulo, html) {
-    if (!vistaPrincipal || !vistaInfo || !tituloVistaInfo || !contenidoVistaInfo) return;
-    cerrarSpotPanel();
-    tituloVistaInfo.textContent = titulo;
-    contenidoVistaInfo.innerHTML = html;
-    vistaPrincipal.classList.add("hidden");
-    vistaInfo.classList.remove("hidden");
+  function abrirVistaInfo(titulo, html, claseExtra = "") {
+  if (!vistaPrincipal || !vistaInfo || !tituloVistaInfo || !contenidoVistaInfo) return;
+
+  cerrarSpotPanel();
+
+  vistaInfo.classList.remove("vista-quienes", "vista-servicios", "vista-contacto");
+
+  if (claseExtra) {
+    vistaInfo.classList.add(claseExtra);
   }
 
+  tituloVistaInfo.textContent = titulo;
+  contenidoVistaInfo.innerHTML = html;
+  vistaPrincipal.classList.add("hidden");
+  vistaInfo.classList.remove("hidden");
+}
+
   function cerrarVistaInfoFn() {
-    if (!vistaPrincipal || !vistaInfo) return;
-    vistaInfo.classList.add("hidden");
-    vistaPrincipal.classList.remove("hidden");
-  }
+  if (!vistaPrincipal || !vistaInfo) return;
+  vistaInfo.classList.add("hidden");
+  vistaInfo.classList.remove("vista-quienes", "vista-servicios", "vista-contacto");
+  vistaPrincipal.classList.remove("hidden");
+}
 
   function mostrarAplicacion() {
     inicio.classList.add("hidden");
