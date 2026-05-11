@@ -133,11 +133,13 @@ body {
   padding: 0 14px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background: rgb(98, 105, 115);
 }
 
 .brand {
+  position: absolute;
+  left: 14px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -254,6 +256,11 @@ body {
 
 /* MENU SUPERIOR */
 .topbar nav {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+
   display: flex;
   align-items: center;
   gap: 18px;
@@ -735,6 +742,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
   .topbar {
     flex-direction: column;
     align-items: stretch;
@@ -742,13 +750,29 @@ body {
     gap: 8px;
   }
 
+  .brand,
+  .controls,
+  .topbar nav {
+    position: static;
+    transform: none;
+  }
+
   .controls {
-    justify-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .topbar nav {
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .menu-link,
+  .topbar-link,
+  .topbar-action,
+  .select {
+    font-size: 13px;
   }
 
   .modal-footer {
@@ -785,6 +809,7 @@ body {
     padding: 12px;
   }
 }
+
 .vista-quienes {
   position: relative;
   background:
@@ -1112,4 +1137,33 @@ body {
 
 .admin-btn:hover {
   opacity: 0.9;
+}
+
+/* MODAL CREAR SPOT SOBRE LA APP */
+
+.modal-crear-spot {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 90px 24px 24px;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("img/anadirspot.jpg") center center / cover no-repeat;
+}
+
+.modal-crear-spot.hidden {
+  display: none;
+}
+
+.crear-spot-box {
+  width: min(900px, 94vw);
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  background: rgb(98, 105, 115);
 }

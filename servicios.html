@@ -1,33 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Servicios | superSpot</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
+  <!-- TOPBAR -->
   <header class="topbar">
+
     <div class="brand">
-      <strong>superSpot</strong>
+      <a href="index.html" class="brand-link">
+        <strong>superSpot</strong>
+      </a>
     </div>
 
     <div class="controls">
-      <a href="index.html" class="btn btn-secondary">Inicio</a>
+
+      <select id="selectorZona" class="select">
+        <option value="med">Mediterráneo</option>
+        <option value="bal">Baleares</option>
+        <option value="cant">Cantábrico</option>
+        <option value="pv">País Vasco</option>
+        <option value="gal">Galicia</option>
+      </select>
+
+      <a href="index.html" class="topbar-action">
+        Añadir spot
+      </a>
+
     </div>
 
     <nav class="menu-superior">
-      <a href="quienes.html" class="menu-link">Quiénes somos</a>
-      <a href="servicios.html" class="menu-link">Servicios</a>
-      <a href="contacto.html" class="menu-link">Contacto</a>
-      <a href="index.html" class="menu-link">Login</a>
-      <a href="index.html" class="menu-link">Registro</a>
+
+      <a href="quienes.html" class="menu-link">
+        quiénes somos
+      </a>
+
+      <a href="servicios.html" class="menu-link">
+        servicios
+      </a>
+
+      <a href="contacto.html" class="menu-link">
+        contacto
+      </a>
+
+      <a href="index.html" class="menu-link">
+        LOGIN
+      </a>
+
+      <a href="index.html" class="menu-link">
+        REGISTRO
+      </a>
+
     </nav>
+
   </header>
 
   <main>
+
     <section class="servicios-bg">
+
       <div class="panel-servicios">
 
         <div class="card card-transparente">
@@ -37,38 +75,61 @@
           </h1>
 
           <p class="servicios-texto">
-              SuperSpot es una plataforma diseñada para surfistas que buscan información clara, rápida y útil sobre el estado del mar. 
-              Reunimos predicción, mapas, datos en tiempo real y herramientas de exploración para ayudarte a elegir el mejor spot en cada momento.          </p>
+            SuperSpot es una plataforma diseñada para surfistas que buscan información clara, rápida y útil sobre el estado del mar.
+            Reunimos predicción, mapas, datos en tiempo real y herramientas de exploración para ayudarte a elegir el mejor spot en cada momento.
+          </p>
+
         </div>
 
         <div class="servicios-grid">
+
           <div class="card card-transparente">
-            <div class="section-title">Predicción de olas</div>
+
+            <div class="section-title">
+              Predicción de olas
+            </div>
+
             <p class="servicios-texto">
-              Consulta altura, periodo y dirección del oleaje en tiempo real. 
+              Consulta altura, periodo y dirección del oleaje en tiempo real.
               Visualiza de forma sencilla cuándo y dónde se dan las mejores condiciones.
             </p>
+
           </div>
 
           <div class="card card-transparente">
-            <div class="section-title">Infomarción del viento</div>
-            <p class="servicios-texto">
-            Analiza la velocidad y dirección del viento para entender cómo afectará al estado del mar. 
-            Una herramienta clave para anticipar la calidad del surf.            </p>
-          </div>
 
-          <div class="card card-transparente">
-            <div class="section-title">Añade tus propios spots</div>
+            <div class="section-title">
+              Información del viento
+            </div>
+
             <p class="servicios-texto">
-              Añade mediante longitud y altitud un punto en la costa para conocer mediante nuestras predicciones
-              el estado de las olas, vientos etc.
+              Analiza la velocidad y dirección del viento para entender cómo afectará al estado del mar.
+              Una herramienta clave para anticipar la calidad del surf.
             </p>
+
           </div>
+
+          <div class="card card-transparente">
+
+            <div class="section-title">
+              Añade tus propios spots
+            </div>
+
+            <p class="servicios-texto">
+              Añade mediante longitud y latitud un punto en la costa para conocer mediante nuestras predicciones
+              el estado de las olas, viento y condiciones del mar.
+            </p>
+
+          </div>
+
         </div>
 
       </div>
+
     </section>
+
   </main>
 
 </body>
+
 </html>

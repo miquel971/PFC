@@ -11,7 +11,73 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
 </head>
+<div id="modalCrearSpot" class="modal-crear-spot hidden">
 
+  <section class="modal-box modal-box-auth crear-spot-box">
+
+    <button id="cerrarCrearSpot" class="modal-close" type="button">
+      ✕
+    </button>
+
+    <div class="modal-head">
+
+      <div class="modal-title">
+        Añadir spot
+      </div>
+
+      <div class="modal-subtitle">
+        Registrar nuevo spot
+      </div>
+
+    </div>
+
+    <form class="modal-body auth-form">
+
+      <input class="auth-input" placeholder="Nombre del spot">
+
+      <input class="auth-input" placeholder="Provincia">
+
+      <input class="auth-input" placeholder="Municipio">
+
+      <input class="auth-input" placeholder="Latitud">
+
+      <input class="auth-input" placeholder="Longitud">
+
+      <input class="auth-input" placeholder="Tipo de fondo">
+
+      <input class="auth-input" placeholder="Orientación">
+
+      <input class="auth-input" placeholder="Webcam URL">
+
+      <label class="menu-link">
+        <input type="checkbox" checked>
+        Activo
+      </label>
+
+      <div class="modal-footer">
+
+        <button
+          id="cancelarCrearSpot"
+          class="btn btn-secondary"
+          type="button">
+          Cancelar
+        </button>
+
+        <button class="btn" type="submit">
+          Guardar spot
+        </button>
+
+      </div>
+
+    </form>
+
+    <div class="auth-logo-bottom">
+      <img src="img/logo.png" alt="SuperSpot">
+    </div>
+
+  </section>
+
+</div>
 <body>
 
   <!-- LANDING -->
@@ -61,11 +127,13 @@
     <option value="gal">Galicia</option>
   </select>
 
- <a id="botonAnadirSpot" href="admin/crear_spot.php" class="topbar-action">
+<button id="botonAnadirSpot" class="topbar-action" type="button">
   Añadir spot
-</a>
+</button>
 
 </div>
+
+<nav class="menu-superior">
 
   <nav class="menu-superior">
     <a href="quienes.html" class="menu-link">quiénes somos</a>

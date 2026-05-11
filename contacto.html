@@ -1,52 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contacto | superSpot</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
+  <!-- TOPBAR -->
   <header class="topbar">
+
     <div class="brand">
-      <strong>superSpot</strong>
+      <a href="index.html" class="brand-link">
+        <strong>superSpot</strong>
+      </a>
     </div>
 
     <div class="controls">
-      <a href="index.html" class="btn btn-secondary">Inicio</a>
+
+      <select id="selectorZona" class="select">
+        <option value="med">Mediterráneo</option>
+        <option value="bal">Baleares</option>
+        <option value="cant">Cantábrico</option>
+        <option value="pv">País Vasco</option>
+        <option value="gal">Galicia</option>
+      </select>
+
+      <a href="index.html" class="topbar-action">
+        Añadir spot
+      </a>
+
     </div>
 
     <nav class="menu-superior">
-      <a href="quienes.html" class="menu-link">Quiénes somos</a>
-      <a href="servicios.html" class="menu-link">Servicios</a>
-      <a href="contacto.html" class="menu-link">Contacto</a>
-      <a href="index.html" class="menu-link">Login</a>
-      <a href="index.html" class="menu-link">Registro</a>
+
+      <a href="quienes.html" class="menu-link">
+        quiénes somos
+      </a>
+
+      <a href="servicios.html" class="menu-link">
+        servicios
+      </a>
+
+      <a href="contacto.html" class="menu-link">
+        contacto
+      </a>
+
+      <a href="index.html" class="menu-link">
+        LOGIN
+      </a>
+
+      <a href="index.html" class="menu-link">
+        REGISTRO
+      </a>
+
     </nav>
+
   </header>
 
   <main>
+
     <section class="contacto-bg">
+
       <div class="panel-contacto">
 
         <div class="card card-transparente">
-          <div class="section-title">Contacto</div>
+
+          <div class="section-title">
+            Contacto
+          </div>
 
           <h1 class="contacto-titulo">
             ¿Tienes un proyecto en mente?
           </h1>
 
           <p class="contacto-texto">
-            Escríbenos para solicitar información, compartir una idea o hacernos llegar cualquier consulta relacionada con SuperSpot. Te responderemos lo antes posible.
+            Escríbenos para solicitar información, compartir una idea o hacernos llegar cualquier consulta relacionada con SuperSpot.
+            Te responderemos lo antes posible.
           </p>
+
         </div>
 
         <div class="card card-transparente">
+
           <form class="contacto-form" action="#" method="post">
+
             <div class="contacto-grid">
-              <input type="text" name="nombre" class="auth-input contacto-input" placeholder="Nombre completo" required>
-              <input type="email" name="email" class="auth-input contacto-input" placeholder="Email de contacto" required>
+
+              <input
+                type="text"
+                name="nombre"
+                class="auth-input contacto-input"
+                placeholder="Nombre completo"
+                required
+              >
+
+              <input
+                type="email"
+                name="email"
+                class="auth-input contacto-input"
+                placeholder="Email de contacto"
+                required
+              >
+
             </div>
 
             <textarea
@@ -57,25 +117,48 @@
               required
             ></textarea>
 
-            <button type="submit" class="btn">Enviar mensaje</button>
+            <button type="submit" class="btn">
+              Enviar mensaje
+            </button>
+
           </form>
+
         </div>
 
         <div class="contacto-info-grid">
+
           <div class="card card-transparente">
-            <div class="section-title">Email</div>
-            <p class="contacto-texto">hola@superspot.com</p>
+
+            <div class="section-title">
+              Email
+            </div>
+
+            <p class="contacto-texto">
+              hola@superspot.com
+            </p>
+
           </div>
 
           <div class="card card-transparente">
-            <div class="section-title">Ubicación</div>
-            <p class="contacto-texto">Valencia, España</p>
+
+            <div class="section-title">
+              Ubicación
+            </div>
+
+            <p class="contacto-texto">
+              Valencia, España
+            </p>
+
           </div>
+
         </div>
 
       </div>
+
     </section>
+
   </main>
 
 </body>
+
 </html>

@@ -886,3 +886,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
 });
+
+const botonAnadirSpot = document.getElementById("botonAnadirSpot");
+const modalCrearSpot = document.getElementById("modalCrearSpot");
+const cerrarCrearSpot = document.getElementById("cerrarCrearSpot");
+const cancelarCrearSpot = document.getElementById("cancelarCrearSpot");
+
+botonAnadirSpot.addEventListener("click", (e) => {
+  e.preventDefault();
+  modalCrearSpot.classList.remove("hidden");
+});
+
+cerrarCrearSpot.addEventListener("click", () => {
+  modalCrearSpot.classList.add("hidden");
+});
+
+cancelarCrearSpot.addEventListener("click", () => {
+  modalCrearSpot.classList.add("hidden");
+});

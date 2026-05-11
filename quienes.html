@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,25 +9,57 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>  
+<body>
 
-  <!-- TOPBAR (OJO igual en todas las páginas!!!) -->
+  <!-- TOPBAR -->
   <header class="topbar">
+
     <div class="brand">
-      <strong>superSpot</strong>
+      <a href="index.html" class="brand-link">
+        <strong>superSpot</strong>
+      </a>
     </div>
 
     <div class="controls">
-      <a href="index.html" class="btn btn-secondary">Inicio</a>
+
+      <select id="selectorZona" class="select">
+        <option value="med">Mediterráneo</option>
+        <option value="bal">Baleares</option>
+        <option value="cant">Cantábrico</option>
+        <option value="pv">País Vasco</option>
+        <option value="gal">Galicia</option>
+      </select>
+
+      <a href="index.html" class="topbar-action">
+        Añadir spot
+      </a>
+
     </div>
 
     <nav class="menu-superior">
-      <a href="quienes.html" class="menu-link">Quiénes somos</a>
-      <a href="servicios.html" class="menu-link">Servicios</a>
-      <a href="contacto.html" class="menu-link">Contacto</a>
-      <a href="index.html" class="menu-link">Login</a>
-      <a href="index.html" class="menu-link">Registro</a>
+
+      <a href="quienes.html" class="menu-link">
+        quiénes somos
+      </a>
+
+      <a href="servicios.html" class="menu-link">
+        servicios
+      </a>
+
+      <a href="contacto.html" class="menu-link">
+        contacto
+      </a>
+
+      <a href="index.html" class="menu-link">
+        LOGIN
+      </a>
+
+      <a href="index.html" class="menu-link">
+        REGISTRO
+      </a>
+
     </nav>
+
   </header>
 
   <!-- CONTENIDO -->
@@ -47,24 +80,37 @@
             clara, sólida y profesional. Diseñamos páginas corporativas pensadas para transmitir confianza
             y convertir visitas en oportunidades reales.
           </p>
+
         </div>
 
         <div class="quienes-grid">
+
           <div class="card card-transparente">
-            <div class="section-title">Nuestra visión</div>
+
+            <div class="section-title">
+              Nuestra visión
+            </div>
+
             <p class="quienes-texto">
               Creemos que una web debe servir para comunicar mejor, proyectar una imagen profesional
               y facilitar que el cliente entienda qué haces.
             </p>
+
           </div>
 
           <div class="card card-transparente">
-            <div class="section-title">Forma de trabajar</div>
+
+            <div class="section-title">
+              Forma de trabajar
+            </div>
+
             <p class="quienes-texto">
               Analizamos cada proyecto según sus objetivos. Desarrollamos una web coherente, moderna
               y funcional con un enfoque práctico.
             </p>
+
           </div>
+
         </div>
 
       </div>
@@ -74,4 +120,5 @@
   </main>
 
 </body>
+
 </html>

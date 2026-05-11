@@ -24,53 +24,120 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-  <title>Crear spot</title>
-  <style>
-    body{font-family:Arial;background:#111;color:white;padding:20px}
-    input{width:300px;padding:8px;margin:4px 0}
-    label{display:block;margin-top:10px}
-    a{color:#4fc3f7}
-    button{padding:10px 14px;margin-top:10px}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear spot | superSpot</title>
+
+  <link rel="stylesheet" href="../styles.css">
 </head>
+
 <body>
 
-<h1>Crear Spot</h1>
-<a href="spots.php">⬅ Volver</a>
+  <main class="crear-spot-bg">
 
-<form method="POST">
-  <label>Nombre</label>
-  <input name="nombre" required>
+    <section class="modal-box modal-box-auth crear-spot-box">
 
-  <label>Provincia</label>
-  <input name="provincia" required>
+      <div class="modal-head">
 
-  <label>Municipio</label>
-  <input name="municipio" required>
+        <div class="modal-title">
+          Añadir spot
+        </div>
 
-  <label>Lat</label>
-  <input name="lat" type="number" step="0.0000001" required>
+        <div class="modal-subtitle">
+          Registrar nuevo spot
+        </div>
 
-  <label>Lng</label>
-  <input name="lng" type="number" step="0.0000001" required>
+      </div>
 
-  <label>Tipo fondo</label>
-  <input name="tipo_fondo">
+      <form class="modal-body auth-form" method="POST">
 
-  <label>Orientación</label>
-  <input name="orientacion">
+        <input
+          class="auth-input"
+          name="nombre"
+          placeholder="Nombre del spot"
+          required
+        >
 
-  <label>Webcam URL</label>
-  <input name="webcam_url">
+        <input
+          class="auth-input"
+          name="provincia"
+          placeholder="Provincia"
+          required
+        >
 
-  <label>
-    <input type="checkbox" name="activo" checked> Activo
-  </label>
+        <input
+          class="auth-input"
+          name="municipio"
+          placeholder="Municipio"
+          required
+        >
 
-  <button type="submit">Crear</button>
-</form>
+        <input
+          class="auth-input"
+          name="lat"
+          type="number"
+          step="0.0000001"
+          placeholder="Latitud"
+          required
+        >
+
+        <input
+          class="auth-input"
+          name="lng"
+          type="number"
+          step="0.0000001"
+          placeholder="Longitud"
+          required
+        >
+
+        <input
+          class="auth-input"
+          name="tipo_fondo"
+          placeholder="Tipo de fondo"
+        >
+
+        <input
+          class="auth-input"
+          name="orientacion"
+          placeholder="Orientación"
+        >
+
+        <input
+          class="auth-input"
+          name="webcam_url"
+          placeholder="Webcam URL"
+        >
+
+        <label class="menu-link">
+          <input type="checkbox" name="activo" checked>
+          Activo
+        </label>
+
+        <div class="modal-footer">
+
+          <a href="spots.php" class="btn btn-secondary">
+            Cancelar
+          </a>
+
+          <button class="btn" type="submit">
+            Guardar spot
+          </button>
+
+        </div>
+
+      </form>
+
+      <div class="auth-logo-bottom">
+        <img src="../img/logo.png" alt="SuperSpot">
+      </div>
+
+    </section>
+
+  </main>
 
 </body>
+
 </html>
