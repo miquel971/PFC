@@ -7,7 +7,8 @@
   <title>superSpot</title>
 
   <link rel="stylesheet" href="styles.css">
-  <!--link al mapa-->
+
+  <!-- Leaflet -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
 </head>
 
@@ -15,6 +16,7 @@
 
   <!-- LANDING -->
   <section id="inicio" class="landing">
+
     <video class="landing-video" autoplay muted loop playsinline>
       <source src="video/home_02_web.mp4" type="video/mp4">
     </video>
@@ -22,6 +24,7 @@
     <div class="landing-overlay"></div>
 
     <div class="landing-centro animacion-entrada">
+
       <div class="landing-logo">
         <img src="img/logo.png" alt="SuperSpot">
       </div>
@@ -33,17 +36,21 @@
         <button class="btn btn-cta" data-zona="pv" type="button">País Vasco</button>
         <button class="btn btn-cta" data-zona="gal" type="button">Galicia</button>
       </div>
+
     </div>
   </section>
 
-  <!-- APLICACIÓN -->
+  <!-- APP -->
   <div id="aplicacion" class="app hidden">
+
     <header class="topbar">
+
       <div class="brand">
         <strong>superSpot</strong>
       </div>
 
       <div class="controls">
+
         <select id="selectorZona" class="select">
           <option value="med">Mediterráneo</option>
           <option value="bal">Baleares</option>
@@ -52,69 +59,95 @@
           <option value="gal">Galicia</option>
         </select>
 
-        <button id="botonCargarSpots" class="btn" type="button">Cargar spots</button>
-        <button id="botonVolverInicio" class="btn btn-secondary" type="button">Inicio</button>
+        <button id="botonCargarSpots" class="btn" type="button">
+          Cargar spots
+        </button>
+
+        <a id="botonAnadirSpot" href="admin/crear_spot.php" class="btn">
+          Añadir spot
+        </a>
+
+        <button id="botonVolverInicio" class="btn btn-secondary" type="button">
+          Inicio
+        </button>
+
       </div>
 
       <nav class="menu-superior">
         <a href="quienes.html" class="menu-link">Quiénes somos</a>
         <a href="servicios.html" class="menu-link">Servicios</a>
         <a href="contacto.html" class="menu-link">Contacto</a>
-        <button id="btnAbrirLogin" class="menu-link" type="button">Login</button>
-        <button id="btnAbrirRegistro" class="menu-link" type="button">Registro</button>
+
+        <button id="btnAbrirLogin" class="menu-link" type="button">
+          Login
+        </button>
+
+        <button id="btnAbrirRegistro" class="menu-link" type="button">
+          Registro
+        </button>
       </nav>
+
     </header>
 
     <main id="vistaPrincipal" class="main">
+
       <div class="layout">
+
         <div id="mapa" class="mapa-pequeno"></div>
 
         <aside class="panel">
+
           <div class="card">
             <div id="recoBox"></div>
           </div>
-<!--Slide de imágenes Foto del día 7 unidades de momento-->
-  <div class="card" id="cardFotoDia">
+
+          <!--Slide de imágenes Foto del día 7 unidades de momento-->
+<div class="card" id="cardFotoDia">
   <div class="section-title">Últimas sesiones</div><br>
 
   <div class="galeria-foto-dia">
-
-    <img src="img/foto-dia.jpg" class="foto-slide activa">
-
-    <img src="img/foto-dia-2.jpg" class="foto-slide">
-
-    <img src="img/foto-dia-3.jpg" class="foto-slide">
-
-    <img src="img/foto-dia-4.jpg" class="foto-slide">
-
-    <img src="img/foto-dia-5.jpg" class="foto-slide">
-
-    <img src="img/foto-dia-6.jpg" class="foto-slide">
-
-    <img src="img/foto-dia-7.jpg" class="foto-slide">
-
+    <img src="img/foto-dia.jpg" alt="Foto del día 1" class="foto-slide activa">
+    <img src="img/foto-dia-2.jpg" alt="Foto del día 2" class="foto-slide">
+    <img src="img/foto-dia-3.jpg" alt="Foto del día 3" class="foto-slide">
+    <img src="img/foto-dia-4.jpg" alt="Foto del día 4" class="foto-slide">
+    <img src="img/foto-dia-5.jpg" alt="Foto del día 5" class="foto-slide">
+    <img src="img/foto-dia-6.jpg" alt="Foto del día 6" class="foto-slide">
+    <img src="img/foto-dia-7.jpg" alt="Foto del día 7" class="foto-slide">
   </div>
 </div>
 
-          <!-- PANEL DEL SPOT -->
+          <!-- PANEL SPOT -->
           <section id="spotPanel" class="spot-panel hidden">
+
             <div class="spot-panel-head">
+
               <div>
                 <div id="tituloSpot" class="modal-title"></div>
                 <div id="subtituloSpot" class="modal-subtitle"></div>
               </div>
 
               <div class="ficha-acciones">
-                <button id="botonCentrarMapa" class="btn btn-secondary" type="button">Centrar</button>
-                <button id="botonCerrarSpot" class="btn" type="button">Cerrar</button>
+
+                <button id="botonCentrarMapa" class="btn btn-secondary" type="button">
+                  Centrar
+                </button>
+
+                <button id="botonCerrarSpot" class="btn" type="button">
+                  Cerrar
+                </button>
+
               </div>
+
             </div>
 
             <div class="spot-panel-body">
+
               <section class="ficha-arriba">
+
                 <div class="ficha-resumen" id="badgesSpot"></div>
 
                 <div class="ficha-datos">
+
                   <div class="dato">
                     <div class="k">Ola</div>
                     <div class="v" id="ahoraOla">— m</div>
@@ -144,60 +177,113 @@
                     <div class="k">Estado</div>
                     <div class="v" id="ahoraEstadoViento">—</div>
                   </div>
+
                 </div>
 
                 <div class="ficha-info-mini">
-                  <span><b>Boya:</b> <span id="spotBoya">—</span></span>
-                  <span><b>Webcam:</b> <span id="spotWebcam">—</span></span>
-                  <span><b>Coords:</b> <span id="spotCoordenadas">—</span></span>
+
+                  <span>
+                    <b>Boya:</b>
+                    <span id="spotBoya">—</span>
+                  </span>
+
+                  <span>
+                    <b>Webcam:</b>
+                    <span id="spotWebcam">—</span>
+                  </span>
+
+                  <span>
+                    <b>Coords:</b>
+                    <span id="spotCoordenadas">—</span>
+                  </span>
+
                 </div>
+
               </section>
 
               <section class="ficha-abajo">
+
                 <div class="mapas-titulo">
-                  <div class="section-title">Predicción (mapas)</div>
+
+                  <div class="section-title">
+                    Predicción (mapas)
+                  </div>
 
                   <div class="mapas-botones">
-                    <button id="botonMapaOlas" class="btn btn-secondary" type="button">Olas</button>
-                    <button id="botonMapaViento" class="btn btn-secondary" type="button">Viento</button>
+
+                    <button id="botonMapaOlas" class="btn btn-secondary" type="button">
+                      Olas
+                    </button>
+
+                    <button id="botonMapaViento" class="btn btn-secondary" type="button">
+                      Viento
+                    </button>
+
                   </div>
+
                 </div>
 
                 <div class="mapas-grid">
+
                   <div class="mapa-box">
+
                     <div class="k">Olas</div>
+
                     <iframe id="iframeOlas" class="mapa-iframe" loading="lazy"></iframe>
+
                   </div>
 
                   <div class="mapa-box">
+
                     <div class="k">Viento</div>
+
                     <iframe id="iframeViento" class="mapa-iframe" loading="lazy"></iframe>
+
                   </div>
+
                 </div>
+
               </section>
+
             </div>
+
           </section>
+
         </aside>
+
       </div>
 
       <div class="status" id="estado">
         Selecciona zona y pulsa “Cargar spots”.
       </div>
+
     </main>
+
   </div>
 
   <!-- MODAL LOGIN -->
   <div id="modalLogin" class="modal hidden" aria-hidden="true">
+
     <div class="modal-box modal-box-auth">
-      <button id="btnCerrarLogin" class="modal-close" type="button">✕</button>
+
+      <button id="btnCerrarLogin" class="modal-close" type="button">
+        ✕
+      </button>
 
       <div class="modal-head">
-        <div class="modal-title">Iniciar sesión</div>
-        <div class="modal-subtitle">Email y contraseña</div>
+
+        <div class="modal-title">
+          Iniciar sesión
+        </div>
+
+        <div class="modal-subtitle">
+          Email y contraseña
+        </div>
+
       </div>
 
       <form id="formLogin" class="modal-body auth-form" novalidate>
-        <label class="visually-hidden" for="loginEmail">Email</label>
+
         <input
           id="loginEmail"
           class="auth-input"
@@ -205,11 +291,8 @@
           name="email"
           placeholder="Email"
           required
-          maxlength="120"
-          autocomplete="email"
         >
 
-        <label class="visually-hidden" for="loginPass">Contraseña</label>
         <input
           id="loginPass"
           class="auth-input"
@@ -217,37 +300,55 @@
           name="password"
           placeholder="Contraseña"
           required
-          minlength="8"
-          maxlength="72"
-          autocomplete="current-password"
         >
 
-        <div id="msgLogin" class="auth-msg" role="status" aria-live="polite"></div>
+        <div id="msgLogin" class="auth-msg"></div>
 
         <div class="modal-footer">
-          <button id="btnCancelarLogin" class="btn btn-secondary" type="button">Cancelar</button>
-          <button class="btn" type="submit">Entrar</button>
+
+          <button id="btnCancelarLogin" class="btn btn-secondary" type="button">
+            Cancelar
+          </button>
+
+          <button class="btn" type="submit">
+            Entrar
+          </button>
+
         </div>
+
       </form>
 
       <div class="auth-logo-bottom">
         <img src="img/logo.png" alt="SuperSpot">
       </div>
+
     </div>
+
   </div>
 
   <!-- MODAL REGISTRO -->
   <div id="modalRegistro" class="modal hidden" aria-hidden="true">
+
     <div class="modal-box modal-box-auth">
-      <button id="btnCerrarRegistro" class="modal-close" type="button">✕</button>
+
+      <button id="btnCerrarRegistro" class="modal-close" type="button">
+        ✕
+      </button>
 
       <div class="modal-head">
-        <div class="modal-title">Crear cuenta</div>
-        <div class="modal-subtitle">Nombre, email, zona y contraseña</div>
+
+        <div class="modal-title">
+          Crear cuenta
+        </div>
+
+        <div class="modal-subtitle">
+          Nombre, email, zona y contraseña
+        </div>
+
       </div>
 
       <form id="formRegistro" class="modal-body auth-form" novalidate>
-        <label class="visually-hidden" for="regNombre">Nombre</label>
+
         <input
           id="regNombre"
           class="auth-input"
@@ -255,12 +356,8 @@
           name="nombre"
           placeholder="Nombre"
           required
-          minlength="2"
-          maxlength="40"
-          autocomplete="name"
         >
 
-        <label class="visually-hidden" for="regEmail">Email</label>
         <input
           id="regEmail"
           class="auth-input"
@@ -268,13 +365,13 @@
           name="email"
           placeholder="Email"
           required
-          maxlength="120"
-          autocomplete="email"
         >
 
-        <label class="visually-hidden" for="regZona">Zona favorita</label>
         <select id="regZona" class="auth-input" name="zona_favorita" required>
-          <option value="" disabled selected>Selecciona tu zona favorita</option>
+          <option value="" disabled selected>
+            Selecciona tu zona favorita
+          </option>
+
           <option value="med">Mediterráneo</option>
           <option value="bal">Baleares</option>
           <option value="cant">Cantábrico</option>
@@ -282,7 +379,6 @@
           <option value="gal">Galicia</option>
         </select>
 
-        <label class="visually-hidden" for="regPass">Contraseña</label>
         <input
           id="regPass"
           class="auth-input"
@@ -290,12 +386,8 @@
           name="password"
           placeholder="Contraseña"
           required
-          minlength="8"
-          maxlength="72"
-          autocomplete="new-password"
         >
 
-        <label class="visually-hidden" for="regPass2">Confirmar contraseña</label>
         <input
           id="regPass2"
           class="auth-input"
@@ -303,27 +395,34 @@
           name="confirm_password"
           placeholder="Confirmar contraseña"
           required
-          minlength="8"
-          maxlength="72"
-          autocomplete="new-password"
         >
 
-        <div id="msgRegistro" class="auth-msg" role="status" aria-live="polite"></div>
+        <div id="msgRegistro" class="auth-msg"></div>
 
         <div class="modal-footer">
-          <button id="btnCancelarRegistro" class="btn btn-secondary" type="button">Cancelar</button>
-          <button id="btnCheckRegistro" class="btn" type="submit">Registrarme</button>
+
+          <button id="btnCancelarRegistro" class="btn btn-secondary" type="button">
+            Cancelar
+          </button>
+
+          <button id="btnCheckRegistro" class="btn" type="submit">
+            Registrarme
+          </button>
+
         </div>
+
       </form>
 
       <div class="auth-logo-bottom">
         <img src="img/logo.png" alt="SuperSpot">
       </div>
+
     </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
-</body>
 
+</body>
 </html>

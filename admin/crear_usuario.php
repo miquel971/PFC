@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 require "../conexion.php";
-
 $nombre = trim($_POST["nombre"] ?? "");
 $email  = trim($_POST["email"] ?? "");
 $pass   = $_POST["password"] ?? "";
