@@ -1167,3 +1167,39 @@ body {
   overflow: auto;
   background: rgb(98, 105, 115);
 }
+
+.btn-disabled {
+  position: relative;
+  overflow: hidden;
+  opacity: 0.75;
+  cursor: default;
+}
+
+.btn-disabled .texto-normal,
+.btn-disabled .texto-hover {
+  transition: opacity 0.25s ease;
+}
+
+.btn-disabled .texto-hover {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn-disabled:hover .texto-normal {
+  opacity: 0;
+}
+
+.btn-disabled:hover .texto-hover {
+  opacity: 1;
+}

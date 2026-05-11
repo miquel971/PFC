@@ -50,13 +50,13 @@
         contacto
       </a>
 
-      <a href="index.html" class="menu-link">
+      <button id="btnAbrirLogin" class="menu-link" type="button">
         LOGIN
-      </a>
+      </button>
 
-      <a href="index.html" class="menu-link">
+      <button id="btnAbrirRegistro" class="menu-link" type="button">
         REGISTRO
-      </a>
+      </button>
 
     </nav>
 
@@ -129,6 +129,222 @@
     </section>
 
   </main>
+
+  <!-- MODAL LOGIN -->
+  <div id="modalLogin" class="modal hidden" aria-hidden="true">
+
+    <div class="modal-box modal-box-auth">
+
+      <button id="btnCerrarLogin" class="modal-close" type="button">
+        ✕
+      </button>
+
+      <div class="modal-head">
+
+        <div class="modal-title">
+          Iniciar sesión
+        </div>
+
+        <div class="modal-subtitle">
+          Email y contraseña
+        </div>
+
+      </div>
+
+      <form id="formLogin" class="modal-body auth-form" novalidate>
+
+        <input
+          id="loginEmail"
+          class="auth-input"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        >
+
+        <input
+          id="loginPass"
+          class="auth-input"
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+        >
+
+        <div id="msgLogin" class="auth-msg"></div>
+
+        <div class="modal-footer">
+
+          <button id="btnCancelarLogin" class="btn btn-secondary" type="button">
+            Cancelar
+          </button>
+
+          <button class="btn" type="submit">
+            Entrar
+          </button>
+
+        </div>
+
+      </form>
+
+      <div class="auth-logo-bottom">
+        <img src="img/logo.png" alt="SuperSpot">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL REGISTRO -->
+  <div id="modalRegistro" class="modal hidden" aria-hidden="true">
+
+    <div class="modal-box modal-box-auth">
+
+      <button id="btnCerrarRegistro" class="modal-close" type="button">
+        ✕
+      </button>
+
+      <div class="modal-head">
+
+        <div class="modal-title">
+          Crear cuenta
+        </div>
+
+        <div class="modal-subtitle">
+          Nombre, email, zona y contraseña
+        </div>
+
+      </div>
+
+      <form id="formRegistro" class="modal-body auth-form" novalidate>
+
+        <input
+          id="regNombre"
+          class="auth-input"
+          type="text"
+          name="nombre"
+          placeholder="Nombre"
+          required
+        >
+
+        <input
+          id="regEmail"
+          class="auth-input"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        >
+
+        <select id="regZona" class="auth-input" name="zona_favorita" required>
+          <option value="" disabled selected>
+            Selecciona tu zona favorita
+          </option>
+
+          <option value="med">Mediterráneo</option>
+          <option value="bal">Baleares</option>
+          <option value="cant">Cantábrico</option>
+          <option value="pv">País Vasco</option>
+          <option value="gal">Galicia</option>
+        </select>
+
+        <input
+          id="regPass"
+          class="auth-input"
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+        >
+
+        <input
+          id="regPass2"
+          class="auth-input"
+          type="password"
+          name="confirm_password"
+          placeholder="Confirmar contraseña"
+          required
+        >
+
+        <div id="msgRegistro" class="auth-msg"></div>
+
+        <div class="modal-footer">
+
+          <button id="btnCancelarRegistro" class="btn btn-secondary" type="button">
+            Cancelar
+          </button>
+
+          <button id="btnCheckRegistro" class="btn" type="submit">
+            Registrarme
+          </button>
+
+        </div>
+
+      </form>
+
+      <div class="auth-logo-bottom">
+        <img src="img/logo.png" alt="SuperSpot">
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const modalLogin = document.getElementById("modalLogin");
+    const modalRegistro = document.getElementById("modalRegistro");
+
+    const btnAbrirLogin = document.getElementById("btnAbrirLogin");
+    const btnCerrarLogin = document.getElementById("btnCerrarLogin");
+    const btnCancelarLogin = document.getElementById("btnCancelarLogin");
+
+    const btnAbrirRegistro = document.getElementById("btnAbrirRegistro");
+    const btnCerrarRegistro = document.getElementById("btnCerrarRegistro");
+    const btnCancelarRegistro = document.getElementById("btnCancelarRegistro");
+
+    function abrirLogin() {
+      modalLogin.classList.remove("hidden");
+      modalLogin.setAttribute("aria-hidden", "false");
+    }
+
+    function cerrarLogin() {
+      modalLogin.classList.add("hidden");
+      modalLogin.setAttribute("aria-hidden", "true");
+    }
+
+    function abrirRegistro() {
+      modalRegistro.classList.remove("hidden");
+      modalRegistro.setAttribute("aria-hidden", "false");
+    }
+
+    function cerrarRegistro() {
+      modalRegistro.classList.add("hidden");
+      modalRegistro.setAttribute("aria-hidden", "true");
+    }
+
+    btnAbrirLogin.addEventListener("click", abrirLogin);
+    btnCerrarLogin.addEventListener("click", cerrarLogin);
+    btnCancelarLogin.addEventListener("click", cerrarLogin);
+
+    btnAbrirRegistro.addEventListener("click", abrirRegistro);
+    btnCerrarRegistro.addEventListener("click", cerrarRegistro);
+    btnCancelarRegistro.addEventListener("click", cerrarRegistro);
+
+    modalLogin.addEventListener("click", (e) => {
+      if (e.target === modalLogin) cerrarLogin();
+    });
+
+    modalRegistro.addEventListener("click", (e) => {
+      if (e.target === modalRegistro) cerrarRegistro();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        cerrarLogin();
+        cerrarRegistro();
+      }
+    });
+  </script>
 
 </body>
 

@@ -881,10 +881,47 @@ document.addEventListener("DOMContentLoaded", () => {
       fotosSlider[fotoActual].classList.add("activa");
     }, 3500);
   }
-  botonCargarSpots?.addEventListener("click", cargarYMostrarSpots);
-  selectorZona?.addEventListener("change", cargarYMostrarSpots);
+botonCargarSpots?.addEventListener("click", cargarYMostrarSpots);
+selectorZona?.addEventListener("change", cargarYMostrarSpots);
 
-  ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
+const params = new URLSearchParams(window.location.search);
+const modal = params.get("modal");
+
+if (modal === "login") {
+  mostrarAplicacion();
+  abrirLogin();
+  window.history.replaceState({}, document.title, "index.html");
+}
+
+if (modal === "registro") {
+  mostrarAplicacion();
+  abrirRegistro();
+  window.history.replaceState({}, document.title, "index.html");
+}
+
+if (window.location.search.includes("modal=login")) {
+
+  inicio.classList.add("hidden");
+  aplicacion.classList.remove("hidden");
+
+  setTimeout(() => {
+    abrirLogin();
+  }, 50);
+
+}
+
+if (window.location.search.includes("modal=registro")) {
+
+  inicio.classList.add("hidden");
+  aplicacion.classList.remove("hidden");
+
+  setTimeout(() => {
+    abrirRegistro();
+  }, 50);
+
+}
+
+ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
 });
 
 const botonAnadirSpot = document.getElementById("botonAnadirSpot");
@@ -903,4 +940,24 @@ cerrarCrearSpot.addEventListener("click", () => {
 
 cancelarCrearSpot.addEventListener("click", () => {
   modalCrearSpot.classList.add("hidden");
+});
+
+window.addEventListener("load", () => {
+
+  if (window.location.href.includes("modal=login")) {
+
+    document.getElementById("inicio").classList.add("hidden");
+    document.getElementById("aplicacion").classList.remove("hidden");
+
+    document.getElementById("modalLogin").classList.remove("hidden");
+  }
+
+  if (window.location.href.includes("modal=registro")) {
+
+    document.getElementById("inicio").classList.add("hidden");
+    document.getElementById("aplicacion").classList.remove("hidden");
+
+    document.getElementById("modalRegistro").classList.remove("hidden");
+  }
+
 });
