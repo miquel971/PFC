@@ -7,6 +7,7 @@
   <title>superSpot</title>
 
   <link rel="stylesheet" href="styles.css">
+  <!--link al mapa-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
 </head>
 
@@ -72,11 +73,28 @@
           <div class="card">
             <div id="recoBox"></div>
           </div>
+<!--Slide de imágenes Foto del día 7 unidades de momento-->
+  <div class="card" id="cardFotoDia">
+  <div class="section-title">Últimas sesiones</div><br>
 
-          <div class="card" id="cardFotoDia">
-            <div class="section-title">Foto del día</div><br>
-            <img src="img/foto-dia.jpg" alt="Foto del día" style="width:100%; border-radius:0; display:block;">
-          </div>
+  <div class="galeria-foto-dia">
+
+    <img src="img/foto-dia.jpg" class="foto-slide activa">
+
+    <img src="img/foto-dia-2.jpg" class="foto-slide">
+
+    <img src="img/foto-dia-3.jpg" class="foto-slide">
+
+    <img src="img/foto-dia-4.jpg" class="foto-slide">
+
+    <img src="img/foto-dia-5.jpg" class="foto-slide">
+
+    <img src="img/foto-dia-6.jpg" class="foto-slide">
+
+    <img src="img/foto-dia-7.jpg" class="foto-slide">
+
+  </div>
+</div>
 
           <!-- PANEL DEL SPOT -->
           <section id="spotPanel" class="spot-panel hidden">

@@ -865,7 +865,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (recoBox) recoBox.innerHTML = `<div class="muted">Error en recomendación.</div>`;
     }
   }
+  const fotosSlider = document.querySelectorAll(".foto-slide");
+  let fotoActual = 0;
 
+  if (fotosSlider.length > 0) {
+    setInterval(() => {
+      fotosSlider[fotoActual].classList.remove("activa");
+
+      fotoActual++;
+
+      if (fotoActual >= fotosSlider.length) {
+        fotoActual = 0;
+      }
+
+      fotosSlider[fotoActual].classList.add("activa");
+    }, 3500);
+  }
   botonCargarSpots?.addEventListener("click", cargarYMostrarSpots);
   selectorZona?.addEventListener("change", cargarYMostrarSpots);
 

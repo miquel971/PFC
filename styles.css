@@ -453,6 +453,30 @@ body {
   margin-top: 10px;
 }
 
+/* GALERÍA FOTO DEL DÍA */
+.galeria-foto-dia {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 300px);
+  min-height: 360px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.foto-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.foto-slide.activa {
+  opacity: 1;
+}
+
 /* PANEL SPOT */
 .spot-panel {
   flex: 1;
