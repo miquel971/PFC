@@ -45,49 +45,43 @@
 
     <header class="topbar">
 
-      <div class="brand">
-        <strong>superSpot</strong>
-      </div>
+<div class="brand">
+  <button id="botonVolverInicio" class="brand-link" type="button">
+    <strong>superSpot</strong>
+  </button>
+</div>
 
-      <div class="controls">
+<div class="controls">
 
-        <select id="selectorZona" class="select">
-          <option value="med">Mediterráneo</option>
-          <option value="bal">Baleares</option>
-          <option value="cant">Cantábrico</option>
-          <option value="pv">País Vasco</option>
-          <option value="gal">Galicia</option>
-        </select>
+  <select id="selectorZona" class="select">
+    <option value="med">Mediterráneo</option>
+    <option value="bal">Baleares</option>
+    <option value="cant">Cantábrico</option>
+    <option value="pv">País Vasco</option>
+    <option value="gal">Galicia</option>
+  </select>
 
-        <button id="botonCargarSpots" class="btn" type="button">
-          Cargar spots
-        </button>
+ <a id="botonAnadirSpot" href="admin/crear_spot.php" class="topbar-action">
+  Añadir spot
+</a>
 
-        <a id="botonAnadirSpot" href="admin/crear_spot.php" class="btn">
-          Añadir spot
-        </a>
+</div>
 
-        <button id="botonVolverInicio" class="btn btn-secondary" type="button">
-          Inicio
-        </button>
+  <nav class="menu-superior">
+    <a href="quienes.html" class="menu-link">quiénes somos</a>
+    <a href="servicios.html" class="menu-link">servicios</a>
+    <a href="contacto.html" class="menu-link">contacto</a>
 
-      </div>
+    <button id="btnAbrirLogin" class="menu-link" type="button">
+      LOGIN
+    </button>
 
-      <nav class="menu-superior">
-        <a href="quienes.html" class="menu-link">Quiénes somos</a>
-        <a href="servicios.html" class="menu-link">Servicios</a>
-        <a href="contacto.html" class="menu-link">Contacto</a>
+    <button id="btnAbrirRegistro" class="menu-link" type="button">
+      REGISTRO
+    </button>
+  </nav>
 
-        <button id="btnAbrirLogin" class="menu-link" type="button">
-          Login
-        </button>
-
-        <button id="btnAbrirRegistro" class="menu-link" type="button">
-          Registro
-        </button>
-      </nav>
-
-    </header>
+</header>
 
     <main id="vistaPrincipal" class="main">
 
