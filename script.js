@@ -72,6 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputLoginEmail = document.getElementById("loginEmail");
   const inputLoginPass = document.getElementById("loginPass");
 
+  const botonAnadirSpot = document.getElementById("botonAnadirSpot");
+  const modalCrearSpot = document.getElementById("modalCrearSpot");
+  const cerrarCrearSpot = document.getElementById("cerrarCrearSpot");
+
   const reNombre = /^[A-Za-zÀ-ÿÑñ]+(?:[ '\-][A-Za-zÀ-ÿÑñ]+)*$/u;
   const reEmail = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
   const rePass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,72}$/;
@@ -116,10 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
     aplicacion.classList.add("hidden");
     inicio.classList.remove("hidden");
     cerrarSpotPanel();
-    cerrarRegistro();
-    cerrarLogin();
-    ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
+    
   }
+
+
+    ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
+  
 
   if (inicio) {
     inicio.querySelectorAll("[data-zona]").forEach((btn) => {
@@ -132,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  
   botonVolverInicio?.addEventListener("click", mostrarInicio);
 
   if (typeof L === "undefined") {
@@ -622,6 +629,17 @@ document.addEventListener("DOMContentLoaded", () => {
     modalLogin.setAttribute("aria-hidden", "true");
   }
 
+  function abrirCrearSpot() {
+  if (!modalCrearSpot) return;
+  modalCrearSpot.classList.remove("hidden");
+}
+
+function cerrarCrearSpotFn() {
+  if (!modalCrearSpot) return;
+  modalCrearSpot.classList.add("hidden");
+}
+
+
   function validarLogin() {
     if (!formLogin || !inputLoginEmail || !inputLoginPass) return false;
 
@@ -657,6 +675,13 @@ document.addEventListener("DOMContentLoaded", () => {
   btnAbrirLogin?.addEventListener("click", abrirLogin);
   btnCerrarLogin?.addEventListener("click", cerrarLogin);
   btnCancelarLogin?.addEventListener("click", cerrarLogin);
+
+  botonAnadirSpot?.addEventListener("click", abrirCrearSpot);
+  cerrarCrearSpot?.addEventListener("click", cerrarCrearSpotFn);
+
+  modalCrearSpot?.addEventListener("click", (e) => {
+  if (e.target === modalCrearSpot) cerrarCrearSpotFn();
+  });
 
   btnQuienes?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -797,6 +822,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (modalCrearSpot && !modalCrearSpot.classList.contains("hidden")) {
+  cerrarCrearSpotFn();
+  return;
+}
+
     if (vistaInfo && !vistaInfo.classList.contains("hidden")) {
       cerrarVistaInfoFn();
       return;
@@ -924,40 +954,4 @@ if (window.location.search.includes("modal=registro")) {
 ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
 });
 
-const botonAnadirSpot = document.getElementById("botonAnadirSpot");
-const modalCrearSpot = document.getElementById("modalCrearSpot");
-const cerrarCrearSpot = document.getElementById("cerrarCrearSpot");
-const cancelarCrearSpot = document.getElementById("cancelarCrearSpot");
 
-botonAnadirSpot.addEventListener("click", (e) => {
-  e.preventDefault();
-  modalCrearSpot.classList.remove("hidden");
-});
-
-cerrarCrearSpot.addEventListener("click", () => {
-  modalCrearSpot.classList.add("hidden");
-});
-
-cancelarCrearSpot.addEventListener("click", () => {
-  modalCrearSpot.classList.add("hidden");
-});
-
-window.addEventListener("load", () => {
-
-  if (window.location.href.includes("modal=login")) {
-
-    document.getElementById("inicio").classList.add("hidden");
-    document.getElementById("aplicacion").classList.remove("hidden");
-
-    document.getElementById("modalLogin").classList.remove("hidden");
-  }
-
-  if (window.location.href.includes("modal=registro")) {
-
-    document.getElementById("inicio").classList.add("hidden");
-    document.getElementById("aplicacion").classList.remove("hidden");
-
-    document.getElementById("modalRegistro").classList.remove("hidden");
-  }
-
-});

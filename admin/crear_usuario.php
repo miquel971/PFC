@@ -4,6 +4,7 @@ require "../conexion.php";
 $nombre = trim($_POST["nombre"] ?? "");
 $email  = trim($_POST["email"] ?? "");
 $pass   = $_POST["password"] ?? "";
+$zona = trim($_POST["zona_favorita"] ?? "");
 
 function fail($code, $msg){
   http_response_code($code);
@@ -11,7 +12,15 @@ function fail($code, $msg){
   exit;
 }
 
-if ($nombre === "" || $email === "" || $pass === "") fail(400, "Faltan datos");
+if ($nombre === "" || $email === "" || $pass === "" || $zona === "") {
+  fail(400, "Faltan datos");
+}
+
+$zonasValidas = ["med", "bal", "cant", "pv", "gal"];
+
+if (!in_array($zona, $zonasValidas, true)) {
+  fail(400, "Zona inválida");
+}
 
 if (mb_strlen($nombre) < 2 || mb_strlen($nombre) > 40) fail(400, "Nombre inválido");
 if (!preg_match("/^[A-Za-zÀ-ÿÑñ]+(?:[ '\-][A-Za-zÀ-ÿÑñ]+)*$/u", $nombre)) fail(400, "Nombre inválido");
@@ -32,8 +41,17 @@ try {
 
   $hash = password_hash($pass, PASSWORD_DEFAULT);
 
-  $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
-  $stmt->execute([$nombre, $email, $hash]);
+  $stmt = $conexion->prepare("
+  INSERT INTO usuarios (nombre, email, password, zona_favorita)
+  VALUES (?, ?, ?, ?)
+");
+
+$stmt->execute([
+  $nombre,
+  $email,
+  $hash,
+  $zona
+]);
 
   echo json_encode(["ok"=>true], JSON_UNESCAPED_UNICODE);
   exit;

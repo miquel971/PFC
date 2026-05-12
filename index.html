@@ -33,45 +33,16 @@
 
     </div>
 
-    <form class="modal-body auth-form">
+ <div class="modal-body crud-modal-body">
 
-      <input class="auth-input" placeholder="Nombre del spot">
+  <iframe
+    id="iframeCrudSpots"
+    class="crud-iframe"
+    src="admin/spots.php"
+    title="CRUD spots"
+  ></iframe>
 
-      <input class="auth-input" placeholder="Provincia">
-
-      <input class="auth-input" placeholder="Municipio">
-
-      <input class="auth-input" placeholder="Latitud">
-
-      <input class="auth-input" placeholder="Longitud">
-
-      <input class="auth-input" placeholder="Tipo de fondo">
-
-      <input class="auth-input" placeholder="Orientación">
-
-      <input class="auth-input" placeholder="Webcam URL">
-
-      <label class="menu-link">
-        <input type="checkbox" checked>
-        Activo
-      </label>
-
-      <div class="modal-footer">
-
-        <button
-          id="cancelarCrearSpot"
-          class="btn btn-secondary"
-          type="button">
-          Cancelar
-        </button>
-
-        <button class="btn" type="submit">
-          Guardar spot
-        </button>
-
-      </div>
-
-    </form>
+</div>
 
     <div class="auth-logo-bottom">
       <img src="img/logo.png" alt="SuperSpot">

@@ -1203,3 +1203,63 @@ body {
 .btn-disabled:hover .texto-hover {
   opacity: 1;
 }
+
+.crud-modal-body {
+  padding: 0;
+  overflow: hidden;
+}
+
+.crud-iframe {
+  width: 100%;
+  height: 70vh;
+  border: 0;
+  background: #111;
+  display: block;
+}
+
+.topbar-action {
+  cursor: pointer;
+}
+
+.topbar-action:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.crud-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: rgb(98, 105, 115);
+  color: white;
+}
+
+.crud-volver {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.crud-volver:hover {
+  opacity: 0.75;
+}
+
+.crear-spot-inline {
+  width: 100%;
+}
+
+.crud-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: rgb(98, 105, 115);
+  color: white;
+}
+
+.crud-volver {
+  display: block;
+  margin-bottom: 18px;
+  color: white !important;
+  text-decoration: none;
+  font-weight: 600;
+}

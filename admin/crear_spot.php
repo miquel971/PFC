@@ -36,9 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-  <main class="crear-spot-bg">
+  <main class="crud-page">
 
-    <section class="modal-box modal-box-auth crear-spot-box">
+    <section class="crear-spot-inline">
 
       <div class="modal-head">
 
