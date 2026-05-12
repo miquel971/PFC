@@ -236,12 +236,12 @@ body {
   backdrop-filter: blur(4px);
 }
 
-.btn:hover {
-  background: rgba(255, 255, 255, 0.20);
+.btn {
+  background: rgba(98, 105, 115);
 }
 
 .btn.btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(98, 105, 115);
 }
 
 .btn.btn-cta {
@@ -1262,4 +1262,16 @@ body {
   color: white !important;
   text-decoration: none;
   font-weight: 600;
+}
+
+.spot-actions .btn,
+.mapa-tabs .btn{
+  background:rgb(98,105,115);
+  color:white;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.spot-actions .btn:hover
+.mapa-tabs .btn:hover{
+  background:rgb(88,95,105);
 }
