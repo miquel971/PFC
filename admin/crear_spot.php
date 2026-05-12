@@ -3,6 +3,8 @@ $conexion = new mysqli("localhost", "root", "", "superspot");
 if ($conexion->connect_error) die("Error BD: " . $conexion->connect_error);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+  $zona = $_POST["zona"] ?? "med";
   $nombre = $_POST["nombre"] ?? "";
   $provincia = $_POST["provincia"] ?? "";
   $municipio = $_POST["municipio"] ?? "";
@@ -11,11 +13,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $tipo_fondo = $_POST["tipo_fondo"] ?? "";
   $orientacion = $_POST["orientacion"] ?? "";
   $webcam_url = $_POST["webcam_url"] ?? "";
-  $activo = isset($_POST["activo"]) ? 1 : 0;
+  $activo = 1;
 
-  $stmt = $conexion->prepare("INSERT INTO spots (nombre, provincia, municipio, lat, lng, tipo_fondo, orientacion, webcam_url, activo)
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssddsssi", $nombre, $provincia, $municipio, $lat, $lng, $tipo_fondo, $orientacion, $webcam_url, $activo);
+  $stmt = $conexion->prepare("
+    INSERT INTO spots (
+      zona,
+      nombre,
+      provincia,
+      municipio,
+      lat,
+      lng,
+      tipo_fondo,
+      orientacion,
+      webcam_url,
+      activo
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  ");
+
+  $stmt->bind_param(
+    "ssssddsssi",
+    $zona,
+    $nombre,
+    $provincia,
+    $municipio,
+    $lat,
+    $lng,
+    $tipo_fondo,
+    $orientacion,
+    $webcam_url,
+    $activo
+  );
+
   $stmt->execute();
 
   header("Location: spots.php");
@@ -40,6 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <section class="crear-spot-inline">
 
+      <a href="spots.php" class="crud-volver">
+        ← Volver al listado
+      </a>
+
       <div class="modal-head">
 
         <div class="modal-title">
@@ -53,6 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
 
       <form class="modal-body auth-form" method="POST">
+
+        <select class="auth-input" name="zona" required>
+          <option value="med">Mediterráneo</option>
+          <option value="bal">Baleares</option>
+        </select>
 
         <input
           class="auth-input"
@@ -110,11 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           name="webcam_url"
           placeholder="Webcam URL"
         >
-
-        <label class="menu-link">
-          <input type="checkbox" name="activo" checked>
-          Activo
-        </label>
 
         <div class="modal-footer">
 
