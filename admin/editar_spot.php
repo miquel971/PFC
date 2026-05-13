@@ -56,7 +56,7 @@ if (!$spot) die("No existe el spot");
   <meta charset="utf-8">
   <title>Editar spot</title>
   <style>
-    body{font-family:Arial;background:#111;color:white;padding:20px}
+    body{font-family:Arial;background:rgb(98, 105, 115);color:white;padding:20px}
     input{width:320px;padding:8px;margin:4px 0}
     label{display:block;margin-top:10px}
     a{color:#4fc3f7}

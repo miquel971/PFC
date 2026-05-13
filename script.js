@@ -189,6 +189,71 @@ document.addEventListener("DOMContentLoaded", () => {
     return Number(String(v).trim().replace(",", "."));
   }
 
+
+  function calcularSwellBueno(orientacion) {
+  const o = String(orientacion || "").trim().toUpperCase();
+
+  const mapa = {
+    N: ["NO", "N", "NE"],
+    NNE: ["N", "NNE", "NE"],
+    NE: ["N", "NE", "E"],
+    ENE: ["NE", "ENE", "E"],
+    E: ["NE", "E", "SE"],
+    ESE: ["E", "ESE", "SE"],
+    SE: ["E", "SE", "S"],
+    SSE: ["SE", "SSE", "S"],
+    S: ["SE", "S", "SO"],
+    SSO: ["S", "SSO", "SO"],
+    SSW: ["S", "SSW", "SW"],
+    SO: ["S", "SO", "O"],
+    SW: ["S", "SW", "W"],
+    OSO: ["SO", "OSO", "O"],
+    WSW: ["SW", "WSW", "W"],
+    O: ["SO", "O", "NO"],
+    W: ["SW", "W", "NW"],
+    ONO: ["O", "ONO", "NO"],
+    WNW: ["W", "WNW", "NW"],
+    NO: ["O", "NO", "N"],
+    NW: ["W", "NW", "N"],
+    NNO: ["NO", "NNO", "N"],
+    NNW: ["NW", "NNW", "N"]
+  };
+
+  return mapa[o] || [];
+}
+
+function calcularVientoBueno(orientacion) {
+  const o = String(orientacion || "").trim().toUpperCase();
+
+  const mapa = {
+    N: ["S"],
+    NNE: ["SSO"],
+    NE: ["SO"],
+    ENE: ["OSO"],
+    E: ["O"],
+    ESE: ["ONO"],
+    SE: ["NO"],
+    SSE: ["NNO"],
+    S: ["N"],
+    SSO: ["NNE"],
+    SSW: ["NNE"],
+    SO: ["NE"],
+    SW: ["NE"],
+    OSO: ["ENE"],
+    WSW: ["ENE"],
+    O: ["E"],
+    W: ["E"],
+    ONO: ["ESE"],
+    WNW: ["ESE"],
+    NO: ["SE"],
+    NW: ["SE"],
+    NNO: ["SSE"],
+    NNW: ["SSE"]
+  };
+
+  return mapa[o] || [];
+}
+
   async function cargarSpotsDesdeBD() {
     ponerEstado("Cargando spots desde BD...");
     const res = await fetch("api/spots.php?ts=" + Date.now());
@@ -206,8 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
         lon: num(r.lon ?? r.lng),
         type: r.tipo_fondo || "—",
         buoy: "—",
-        swell: [],
-        wind_good: [],
+        swell: calcularSwellBueno(r.orientacion),
+        wind_good: calcularVientoBueno(r.orientacion),
         webcam: (r.webcam_url || "").trim() !== "",
         webcam_url: r.webcam_url || ""
       }))
@@ -855,46 +920,41 @@ function cerrarCrearSpotFn() {
   }
 
   async function cargarYMostrarSpots() {
-    try {
-      cerrarVistaInfoFn();
-      capaSpots.clearLayers();
-      cerrarSpotPanel();
+  try {
+    cerrarVistaInfoFn();
+    capaSpots.clearLayers();
+    cerrarSpotPanel();
 
-      const zona = selectorZona?.value || "med";
+    const zona = selectorZona?.value || "med";
 
-      let spots = [];
-      if (zona === "med") {
-        spots = await cargarSpotsDesdeBD();
-      } else {
-        const datos = await cargarJSONZona(zona);
-        spots = aplanarSpots(datos);
-      }
+    let spots = await cargarSpotsDesdeBD();
 
-      const spotsValidos = spots.filter(
-        (s) => Number.isFinite(s.lat) && Number.isFinite(s.lon)
-      );
+    const spotsValidos = spots.filter(
+      (s) => Number.isFinite(s.lat) && Number.isFinite(s.lon)
+    );
 
-      if (!spotsValidos.length) {
-        ponerEstado("No hay spots para mostrar.");
-        if (recoBox) recoBox.innerHTML = `<div class="muted">No hay spots.</div>`;
-        return;
-      }
-
-      for (const s of spotsValidos) {
-        añadirMarcadorSpot(s);
-      }
-
-      mapa.invalidateSize();
-      mapa.fitBounds(spotsValidos.map((s) => [s.lat, s.lon]), { padding: [40, 40] });
-      ponerEstado(`OK: ${spotsValidos.length} spots cargados (${zona === "med" ? "BD" : "JSON"}).`);
-
-      await actualizarRecomendacion(spotsValidos, zona);
-    } catch (e) {
-      console.error(e);
-      ponerEstado(`ERROR: ${e.message} (mira consola F12)`);
-      if (recoBox) recoBox.innerHTML = `<div class="muted">Error en recomendación.</div>`;
+    if (!spotsValidos.length) {
+      ponerEstado("No hay spots para mostrar.");
+      if (recoBox) recoBox.innerHTML = `<div class="muted">No hay spots.</div>`;
+      return;
     }
+
+    for (const s of spotsValidos) {
+      añadirMarcadorSpot(s);
+    }
+
+    mapa.invalidateSize();
+    mapa.fitBounds(spotsValidos.map((s) => [s.lat, s.lon]), { padding: [40, 40] });
+    ponerEstado(`OK: ${spotsValidos.length} spots cargados desde BD.`);
+
+    await actualizarRecomendacion(spotsValidos, zona);
+
+  } catch (e) {
+    console.error(e);
+    ponerEstado(`ERROR: ${e.message} (mira consola F12)`);
+    if (recoBox) recoBox.innerHTML = `<div class="muted">Error en recomendación.</div>`;
   }
+}
   const fotosSlider = document.querySelectorAll(".foto-slide");
   let fotoActual = 0;
 
@@ -913,6 +973,13 @@ function cerrarCrearSpotFn() {
   }
 botonCargarSpots?.addEventListener("click", cargarYMostrarSpots);
 selectorZona?.addEventListener("change", cargarYMostrarSpots);
+
+// ESTO CARGA Y PINTA LOS SPOTS
+setTimeout(() => {
+  if (aplicacion && !aplicacion.classList.contains("hidden")) {
+    cargarYMostrarSpots();
+  }
+}, 100);
 
 const params = new URLSearchParams(window.location.search);
 const modal = params.get("modal");
@@ -951,7 +1018,7 @@ if (window.location.search.includes("modal=registro")) {
 
 }
 
-ponerEstado("Selecciona zona y pulsa “Cargar spots”.");
+ponerEstado("Cargando nuevos spots");
 });
 
 
