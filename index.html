@@ -13,44 +13,39 @@
 </head>
 
 <body>
-<div id="modalCrearSpot" class="modal-crear-spot hidden">
+  <div id="modalCrearSpot" class="modal-crear-spot hidden">
 
-  <section class="modal-box modal-box-auth crear-spot-box">
+    <section class="modal-box modal-box-auth crear-spot-box">
 
-    <button id="cerrarCrearSpot" class="modal-close" type="button">
-      ✕
-    </button>
+      <button id="cerrarCrearSpot" class="modal-close" type="button">
+        ✕
+      </button>
 
-    <div class="modal-head">
+      <div class="modal-head">
 
-      <div class="modal-title">
-        Añadir spot
+        <div class="modal-title">
+          Añadir spot
+        </div>
+
+        <div class="modal-subtitle">
+          Registrar nuevo spot
+        </div>
+
       </div>
 
-      <div class="modal-subtitle">
-        Registrar nuevo spot
+      <div class="modal-body crud-modal-body">
+
+        <iframe id="iframeCrudSpots" class="crud-iframe" src="admin/spots.php" title="CRUD spots"></iframe>
+
       </div>
 
-    </div>
+      <div class="auth-logo-bottom">
+        <img src="img/logo.png" alt="SuperSpot">
+      </div>
 
- <div class="modal-body crud-modal-body">
+    </section>
 
-  <iframe
-    id="iframeCrudSpots"
-    class="crud-iframe"
-    src="admin/spots.php"
-    title="CRUD spots"
-  ></iframe>
-
-</div>
-
-    <div class="auth-logo-bottom">
-      <img src="img/logo.png" alt="SuperSpot">
-    </div>
-
-  </section>
-
-</div>
+  </div>
   <!-- INICIO DE WEB -->
   <section id="inicio" class="landing">
 
@@ -66,32 +61,32 @@
         <img src="img/logo.png" alt="SuperSpot">
       </div>
 
-    <div class="landing-actions">
+      <div class="landing-actions">
 
-  <button class="btn btn-cta" data-zona="bal" type="button">
-    Baleares
-  </button>
+        <button class="btn btn-cta" data-zona="bal" type="button">
+          Baleares
+        </button>
 
-  <button class="btn btn-cta" data-zona="med" type="button">
-    Mediterráneo
-  </button>
+        <button class="btn btn-cta" data-zona="med" type="button">
+          Mediterráneo
+        </button>
 
-  <button class="btn btn-cta btn-disabled" type="button">
-    <span class="texto-normal">Cantábrico</span>
-    <span class="texto-hover">Próximamente</span>
-  </button>
+        <button class="btn btn-cta btn-disabled" type="button">
+          <span class="texto-normal">Cantábrico</span>
+          <span class="texto-hover">Próximamente</span>
+        </button>
 
-  <button class="btn btn-cta btn-disabled" type="button">
-    <span class="texto-normal">País Vasco</span>
-    <span class="texto-hover">Próximamente</span>
-  </button>
+        <button class="btn btn-cta btn-disabled" type="button">
+          <span class="texto-normal">País Vasco</span>
+          <span class="texto-hover">Próximamente</span>
+        </button>
 
-  <button class="btn btn-cta btn-disabled" type="button">
-    <span class="texto-normal">Galicia</span>
-    <span class="texto-hover">Próximamente</span>
-  </button>
+        <button class="btn btn-cta btn-disabled" type="button">
+          <span class="texto-normal">Galicia</span>
+          <span class="texto-hover">Próximamente</span>
+        </button>
 
-</div>
+      </div>
 
     </div>
   </section>
@@ -101,44 +96,44 @@
 
     <header class="topbar">
 
-<div class="brand">
-  <button id="botonVolverInicio" class="brand-link" type="button">
-    <strong>superSpot</strong>
-  </button>
-</div>
+      <div class="brand">
+        <button id="botonVolverInicio" class="brand-link" type="button">
+          <strong>superSpot</strong>
+        </button>
+      </div>
 
-<div class="controls">
+      <div class="controls">
 
-  <select id="selectorZona" class="select">
-    <option value="med">Mediterráneo</option>
-    <option value="bal">Baleares</option>
-    <option value="cant">Cantábrico</option>
-    <option value="pv">País Vasco</option>
-    <option value="gal">Galicia</option>
-  </select>
+        <select id="selectorZona" class="select">
+          <option value="med">Mediterráneo</option>
+          <option value="bal">Baleares</option>
+          <option value="cant">Cantábrico</option>
+          <option value="pv">País Vasco</option>
+          <option value="gal">Galicia</option>
+        </select>
 
-<button id="botonAnadirSpot" class="topbar-action" type="button">
-  Añadir spot
-</button>
+        <button id="botonAnadirSpot" class="topbar-action" type="button">
+          Añadir spot
+        </button>
 
-</div>
+      </div>
 
 
-  <nav class="menu-superior">
-    <a href="quienes.html" class="menu-link">quiénes somos</a>
-    <a href="servicios.html" class="menu-link">servicios</a>
-    <a href="contacto.html" class="menu-link">contacto</a>
+      <nav class="menu-superior">
+        <a href="quienes.html" class="menu-link">quiénes somos</a>
+        <a href="servicios.html" class="menu-link">servicios</a>
+        <a href="contacto.html" class="menu-link">contacto</a>
 
-    <button id="btnAbrirLogin" class="menu-link" type="button">
-      LOGIN
-    </button>
+        <button id="btnAbrirLogin" class="menu-link" type="button">
+          LOGIN
+        </button>
 
-    <button id="btnAbrirRegistro" class="menu-link" type="button">
-      REGISTRO
-    </button>
-  </nav>
+        <button id="btnAbrirRegistro" class="menu-link" type="button">
+          REGISTRO
+        </button>
+      </nav>
 
-</header>
+    </header>
 
     <main id="vistaPrincipal" class="main">
 
@@ -153,19 +148,19 @@
           </div>
 
           <!--Carrusel de imágenes "Foto del día"-->
-<div class="card" id="cardFotoDia">
-  <div class="section-title">Últimas sesiones</div><br>
+          <div class="card" id="cardFotoDia">
+            <div class="section-title">Últimas sesiones</div><br>
 
-  <div class="galeria-foto-dia">
-    <img src="img/foto-dia.jpg" alt="Foto del día 1" class="foto-slide activa">
-    <img src="img/foto-dia-2.jpg" alt="Foto del día 2" class="foto-slide">
-    <img src="img/foto-dia-3.jpg" alt="Foto del día 3" class="foto-slide">
-    <img src="img/foto-dia-4.jpg" alt="Foto del día 4" class="foto-slide">
-    <img src="img/foto-dia-5.jpg" alt="Foto del día 5" class="foto-slide">
-    <img src="img/foto-dia-6.jpg" alt="Foto del día 6" class="foto-slide">
-    <img src="img/foto-dia-7.jpg" alt="Foto del día 7" class="foto-slide">
-  </div>
-</div>
+            <div class="galeria-foto-dia">
+              <img src="img/foto-dia.jpg" alt="Foto del día 1" class="foto-slide activa">
+              <img src="img/foto-dia-2.jpg" alt="Foto del día 2" class="foto-slide">
+              <img src="img/foto-dia-3.jpg" alt="Foto del día 3" class="foto-slide">
+              <img src="img/foto-dia-4.jpg" alt="Foto del día 4" class="foto-slide">
+              <img src="img/foto-dia-5.jpg" alt="Foto del día 5" class="foto-slide">
+              <img src="img/foto-dia-6.jpg" alt="Foto del día 6" class="foto-slide">
+              <img src="img/foto-dia-7.jpg" alt="Foto del día 7" class="foto-slide">
+            </div>
+          </div>
 
           <!-- PANEL DE SPOTS -->
           <section id="spotPanel" class="spot-panel hidden">
@@ -335,23 +330,9 @@
 
       <form id="formLogin" class="modal-body auth-form" novalidate>
 
-        <input
-          id="loginEmail"
-          class="auth-input"
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-        >
+        <input id="loginEmail" class="auth-input" type="email" name="email" placeholder="Email" required>
 
-        <input
-          id="loginPass"
-          class="auth-input"
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          required
-        >
+        <input id="loginPass" class="auth-input" type="password" name="password" placeholder="Contraseña" required>
 
         <div id="msgLogin" class="auth-msg"></div>
 
@@ -400,23 +381,9 @@
 
       <form id="formRegistro" class="modal-body auth-form" novalidate>
 
-        <input
-          id="regNombre"
-          class="auth-input"
-          type="text"
-          name="nombre"
-          placeholder="Nombre"
-          required
-        >
+        <input id="regNombre" class="auth-input" type="text" name="nombre" placeholder="Nombre" required>
 
-        <input
-          id="regEmail"
-          class="auth-input"
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-        >
+        <input id="regEmail" class="auth-input" type="email" name="email" placeholder="Email" required>
 
         <select id="regZona" class="auth-input" name="zona_favorita" required>
           <option value="" disabled selected>
@@ -430,23 +397,10 @@
           <option value="gal">Galicia</option>
         </select>
 
-        <input
-          id="regPass"
-          class="auth-input"
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          required
-        >
+        <input id="regPass" class="auth-input" type="password" name="password" placeholder="Contraseña" required>
 
-        <input
-          id="regPass2"
-          class="auth-input"
-          type="password"
-          name="confirm_password"
-          placeholder="Confirmar contraseña"
-          required
-        >
+        <input id="regPass2" class="auth-input" type="password" name="confirm_password"
+          placeholder="Confirmar contraseña" required>
 
         <div id="msgRegistro" class="auth-msg"></div>
 
@@ -476,4 +430,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
